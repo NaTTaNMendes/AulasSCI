@@ -2,7 +2,7 @@ object FormPrincipal: TFormPrincipal
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  Caption = 'Atividade 1'
+  Caption = 'Atividades'
   ClientHeight = 260
   ClientWidth = 258
   Color = clBtnFace

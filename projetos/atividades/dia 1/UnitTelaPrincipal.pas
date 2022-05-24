@@ -248,7 +248,7 @@ var
 begin
 
   // Instanciando variáveis
-  wNumero:= 250;
+  wNumero:= 550;
   wString:= IntToStr(wNumero);
 
   // Retorna os algarismos para o usuário
