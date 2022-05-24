@@ -1,0 +1,9 @@
+Atividades grupo 1
+
+1- Escreva um algoritmo que leia três números e imprima o maior deles;
+
+2- Escreva um algoritmo que leia três números e os imprima em ordem crescente;
+
+3- Escreva um algoritmo que leia 10 números e imprima o menor deles;
+
+4- Escreva um algoritmo que recebe 10 números e imprima o menor deles e quantas vezes o menor número foi lido;

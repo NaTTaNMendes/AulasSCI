@@ -10,8 +10,12 @@ type
   TFormPrincipal = class(TForm)
     btnNmr1: TButton;
     btnNmr2: TButton;
+    btnNmr3: TButton;
+    btnNmr4: TButton;
     procedure btnNmr1Click(Sender: TObject);
     procedure btnNmr2Click(Sender: TObject);
+    procedure btnNmr3Click(Sender: TObject);
+    procedure btnNmr4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -20,9 +24,6 @@ type
 
 var
   FormPrincipal: TFormPrincipal;
-  wNumero1: Integer;
-  wNumero2: Integer;
-  wNumero3: Integer;
 
 implementation
 
@@ -31,11 +32,15 @@ implementation
 procedure TFormPrincipal.btnNmr1Click(Sender: TObject);
 var
   wMaiorNumero: Integer;
+  wNumero1: Integer;
+  wNumero2: Integer;
+  wNumero3: Integer;
 begin
 
-  wNumero1:= 1;
-  wNumero2:= 2;
-  wNumero3:= 45;
+  // Instanciando variáveis
+  wNumero1:= 51;
+  wNumero2:= 73;
+  wNumero3:= -512;
 
   // Encontra o maior número
   wMaiorNumero:= wNumero1;
@@ -43,7 +48,7 @@ begin
     begin
       wMaiorNumero:= wNumero2;
     end;
-  if wNumero3 > wMaiorNumero  then
+  if wNumero3 > wMaiorNumero then
     begin
       wMaiorNumero:= wNumero3;
     end;
@@ -57,47 +62,118 @@ end;
 
 procedure TFormPrincipal.btnNmr2Click(Sender: TObject);
 var
-  wMaiorNumero: Integer;
-  wMenorNumero: Integer;
-  wMedioNumero: Integer;
+  wTemporario: Integer;
+  wTemporario2: Integer;
+  wNumero1: Integer;
+  wNumero2: Integer;
+  wNumero3: Integer;
 begin
-  wNumero1:= 451;
-  wNumero2:= 62436;
-  wNumero3:= 63;
+
+  // Instanciando variáveis
+  wNumero1:= 1002;
+  wNumero2:= 0;
+  wNumero3:= 7649;
+
+  // Verifica se o primeiro valor é maior que o segundo
+  if (wNumero2 < wNumero1) then
+    begin
+      wTemporario:= wNumero1;
+      wNumero1:= wNumero2;
+      wNumero2:= wTemporario;
+    end;
+
+  // Verifica se o terceiro valor é menor que o primeiro
+  if (wNumero3 < wNumero1) then
+    begin
+      wTemporario:= wNumero1;
+      wTemporario2:= wNumero2;
+      wNumero1:= wNumero3;
+      wNumero2:= wTemporario;
+      wNumero3:= wTemporario2;
+    end;
+
+  // Verifica se o terceiro valor é menor que o segundo
+  if (wNumero3 < wNumero2) then
+    begin
+      wTemporario:= wNumero3;
+      wNumero3:= wNumero2;
+      wNumero2:= wTemporario;
+    end;
+
+  // Retorna para o usuário
+  showMessage(IntToStr(wNumero1) + ', ' + IntToStr(wNumero2) + ', ' + IntToStr(wNumero3));
+
+  end;
+
+procedure TFormPrincipal.btnNmr3Click(Sender: TObject);
+var
+  wStringList: TStringList;
+  wMaiorNumero: Integer;
+  I: Integer;
+begin
+
+  // Instanciando variáveis
+  wStringList:= TstringList.Create;
+  wStringList.Add('98');
+  wStringList.Add('5');
+  wStringList.Add('2041');
+  wMaiorNumero:= StrToInt(wStringList[0]);
 
   // Encontra o maior número
-  if (wNumero1 > wNumero2) and (wNumero1 > wNumero3) then
+  for I := 0 to wStringList.Count-1 do
     begin
-      wMaiorNumero:= wNumero1;
-    end
-  else if (wNumero2 > wNumero1) and (wNumero2 > wNumero3) then
-    begin
-      wMaiorNumero:= wNumero2;
-    end
-  else
-    begin
-      wMaiorNumero:= wNumero3;
+      if StrToInt(wStringList[I]) > wMaiorNumero then
+        begin
+          wMaiorNumero:= StrToInt(wStringList[I]);
+        end;
     end;
 
-  // Encontra o menor número
-  if (wNumero1 < wNumero2) and (wNumero1 < wNumero3) then
+  // Retorna o maior número para o usuário
+  ShowMessage('O maior número é: ' + IntToStr(wMaiorNumero));
+
+end;
+
+procedure TFormPrincipal.btnNmr4Click(Sender: TObject);
+var
+  wVetor: array[0..9] of Integer;
+  wMenorNumero: Integer;
+  wMenorQuantidade: Integer;
+  I: Integer;
+begin
+
+  // Instanciando variáveis
+  wVetor[0]:= 2;
+  wVetor[1]:= 2;
+  wVetor[2]:= 1;
+  wVetor[3]:= 0;
+  wVetor[4]:= 2;
+  wVetor[5]:= 2;
+  wVetor[6]:= 2;
+  wVetor[7]:= 2;
+  wVetor[8]:= 2;
+  wVetor[9]:= 4;
+  wMenorNumero:= wVetor[0];
+  wMenorQuantidade:= 0;
+
+  // Encontra o menor número e a quantidade de vezes que ele aparece
+  for I := 0 to 9 do
     begin
-      wMenorNumero:= wNumero1;
-    end
-  else if (wNumero2 < wNumero1) and (wNumero2 < wNumero3) then
-    begin
-      wMenorNumero:= wNumero2;
-    end
-  else
-    begin
-      wMenorNumero:= wNumero3;
+      if wVetor[I] < wMenorNumero then
+        begin
+          wMenorNumero:= wVetor[I];
+          wMenorQuantidade:= 1;
+        end
+      else if wVetor[I] = wMenorNumero then
+         begin
+          wMenorQuantidade:= wMenorQuantidade + 1;
+         end;
     end;
 
-  // Encontra o número médio
-  wMedioNumero:= (wNumero1 + wNumero2 + wNumero3) - (wMaiorNumero + wMenorNumero);
+  // Retorna o menor número e a quantidade para o usuário
+  ShowMessage('O menor número é: ' + IntToStr(wMenorNumero)
+              + ' e os menores números foram lidos '
+              + IntToStr(wMenorQuantidade) + ' vezes');
 
-  // Retorna a ordem para o usuário
-  showMessage(IntToStr(wMenorNumero) +  ', ' + IntToStr(wMedioNumero) + ', ' + IntToStr(wMaiorNumero));
 end;
 
 end.
