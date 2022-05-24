@@ -7,11 +7,11 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
 
 type
-  TForm1 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+  TFormPrincipal = class(TForm)
+    btnNmr1: TButton;
+    btnNmr2: TButton;
+    procedure btnNmr1Click(Sender: TObject);
+    procedure btnNmr2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -19,26 +19,25 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FormPrincipal: TFormPrincipal;
   wNumero1: Integer;
   wNumero2: Integer;
   wNumero3: Integer;
-  wMaiorNumero: Integer;
-  wMenorNumero: Integer;
-  wMedioNumero: Integer;
-  wTotal : Integer;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TFormPrincipal.btnNmr1Click(Sender: TObject);
+var
+  wMaiorNumero: Integer;
 begin
 
-  wNumero1 := 40;
-  wNumero2 := 20;
-  wNumero3 := 30;
+  wNumero1:= 1;
+  wNumero2:= 2;
+  wNumero3:= 45;
 
+  // Encontra o maior número
   wMaiorNumero:= wNumero1;
   if wNumero2 > wMaiorNumero then
     begin
@@ -49,21 +48,27 @@ begin
       wMaiorNumero:= wNumero3;
     end;
 
-  showMessage('O maior número é:' + IntToStr(wMaiorNumero));
+  // Retorna o maior para o usuário
+  showMessage('O maior número entre ' + IntToStr(wNumero1) + ', '
+              + IntToStr(wNumero2) + ' e '  + IntToStr(wNumero3)
+              + ' é: ' + IntToStr(wMaiorNumero));
 
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TFormPrincipal.btnNmr2Click(Sender: TObject);
+var
+  wMaiorNumero: Integer;
+  wMenorNumero: Integer;
+  wMedioNumero: Integer;
 begin
-  wNumero1:= 40;
-  wNumero2:= 20;
-  wNumero3:= 30;
+  wNumero1:= 451;
+  wNumero2:= 62436;
+  wNumero3:= 63;
 
-  wTotal:= wNumero1 + wNumero2 + wNumero3;
-
+  // Encontra o maior número
   if (wNumero1 > wNumero2) and (wNumero1 > wNumero3) then
     begin
-      wmaiorNumero:= wNumero1;
+      wMaiorNumero:= wNumero1;
     end
   else if (wNumero2 > wNumero1) and (wNumero2 > wNumero3) then
     begin
@@ -74,22 +79,25 @@ begin
       wMaiorNumero:= wNumero3;
     end;
 
+  // Encontra o menor número
   if (wNumero1 < wNumero2) and (wNumero1 < wNumero3) then
     begin
-      wmaiorNumero:= wNumero1;
+      wMenorNumero:= wNumero1;
     end
   else if (wNumero2 < wNumero1) and (wNumero2 < wNumero3) then
     begin
-      wMaiorNumero:= wNumero2;
+      wMenorNumero:= wNumero2;
     end
   else
     begin
-      wMaiorNumero:= wNumero3;
+      wMenorNumero:= wNumero3;
     end;
 
-  wMedioNumero:= wTotal - wMaiorNumero - wMenorNumero;
+  // Encontra o número médio
+  wMedioNumero:= (wNumero1 + wNumero2 + wNumero3) - (wMaiorNumero + wMenorNumero);
 
-  showMessage(IntToStr(wMenorNumero) +  ' ' + IntToStr(wMedioNumero) + ' ' + IntToStr(wMaiorNumero));
+  // Retorna a ordem para o usuário
+  showMessage(IntToStr(wMenorNumero) +  ', ' + IntToStr(wMedioNumero) + ', ' + IntToStr(wMaiorNumero));
 end;
 
 end.

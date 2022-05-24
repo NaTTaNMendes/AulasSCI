@@ -1,9 +1,10 @@
-object Form1: TForm1
+object FormPrincipal: TFormPrincipal
   Left = 0
   Top = 0
-  Caption = 'Form1'
-  ClientHeight = 200
-  ClientWidth = 252
+  BorderStyle = bsSingle
+  Caption = 'Atividade 1'
+  ClientHeight = 210
+  ClientWidth = 262
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,24 +12,25 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object Button1: TButton
+  object btnNmr1: TButton
     Left = 88
     Top = 64
     Width = 75
     Height = 25
     Caption = 'N'#250'mero 1'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = btnNmr1Click
   end
-  object Button2: TButton
+  object btnNmr2: TButton
     Left = 88
     Top = 95
     Width = 75
     Height = 25
     Caption = 'N'#250'mero 2'
     TabOrder = 1
-    OnClick = Button2Click
+    OnClick = btnNmr2Click
   end
 end

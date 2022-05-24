@@ -2,13 +2,13 @@ program atividade1;
 
 uses
   Vcl.Forms,
-  UnitTelaPrincipal in 'UnitTelaPrincipal.pas' {Form1};
+  UnitTelaPrincipal in 'UnitTelaPrincipal.pas' {FormPrincipal};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormPrincipal, FormPrincipal);
   Application.Run;
 end.
