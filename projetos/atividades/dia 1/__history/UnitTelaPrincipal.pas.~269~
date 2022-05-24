@@ -190,6 +190,7 @@ var
   wI: Integer;
   wMedia: Currency;
   wTotal: Integer;
+  wQuantidade: Integer;
 begin
 
   // Instanciando variáveis
@@ -223,18 +224,14 @@ begin
   // Deleta todos os valores iguais ao menor e maior números
   for wI := 0 to wStringList.Count-1 do
     begin
-      if (StrToInt(wStringList[wI]) <> wMaiorNumero) or (StrToInt(wStringList[wI]) = wMenorNumero) then
-        begin
-          wStringList.Delete(wI);
-        end
-      else
-        begin
-          wTotal:= wTotal + StrToInt(wStringList[wI]);
-        end;
+      wTotal:= wTotal + StrToInt(wStringList[wI]);
+      wQuantidade:= wQuantidade + 1;
     end;
 
-  wMedia:= wTotal / wStringList.Count;
+  // Calcula a média dos números diferentes do maior e do menor
+  wMedia:= (wTotal - (wMaiorNumero + wMenorNumero)) / (wQuantidade - 2); // Remove o maior e o menor do total e da quantidade
 
+  // Retorna os dados para o usuário
   ShowMessage('Maior número: ' + IntToStr(wMaiorNumero) + #10 
               + 'Menor número: ' + IntToStr(wMenorNumero) + #10 
               + 'Média dos valores: ' + CurrToStr(wMedia));
@@ -248,7 +245,7 @@ var
 begin
 
   // Instanciando variáveis
-  wNumero:= 250;
+  wNumero:= 550;
   wString:= IntToStr(wNumero);
 
   // Retorna os algarismos para o usuário

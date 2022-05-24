@@ -218,21 +218,13 @@ begin
       else if StrToInt(wStringList[wI]) < wMenorNumero then
         begin
           wMenorNumero:= StrToInt(wStringList[wI]);
-        end;           
-    end;
-
-  // Deleta todos os valores iguais ao menor e maior números
-  for wI := 0 to wStringList.Count-1 do
-    begin
-      if (StrToInt(wStringList[wI]) <> wMaiorNumero) and (StrToInt(wStringList[wI]) <> wMenorNumero) then
-        begin
-          wTotal:= wTotal + StrToInt(wStringList[wI]);
-          wQuantidade:= wQuantidade + 1;
         end;
+      wTotal:= wTotal + StrToInt(wStringList[wI]);
+      wQuantidade:= wQuantidade + 1;
     end;
 
   // Calcula a média dos números diferentes do maior e do menor
-  wMedia:= wTotal / wQuantidade;
+  wMedia:= (wTotal - (wMaiorNumero + wMenorNumero)) / (wQuantidade - 2); // Remove o maior e o menor do total e da quantidade
 
   // Retorna os dados para o usuário
   ShowMessage('Maior número: ' + IntToStr(wMaiorNumero) + #10 
