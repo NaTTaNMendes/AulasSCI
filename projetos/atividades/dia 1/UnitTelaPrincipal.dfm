@@ -3,7 +3,7 @@ object FormPrincipal: TFormPrincipal
   Top = 0
   BorderStyle = bsSingle
   Caption = 'Atividade 1'
-  ClientHeight = 168
+  ClientHeight = 260
   ClientWidth = 258
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -50,5 +50,32 @@ object FormPrincipal: TFormPrincipal
     Caption = 'N'#250'mero 4'
     TabOrder = 3
     OnClick = btnNmr4Click
+  end
+  object btnNmr5: TButton
+    Left = 88
+    Top = 148
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 5'
+    TabOrder = 4
+    OnClick = btnNmr5Click
+  end
+  object btnNmr6: TButton
+    Left = 88
+    Top = 179
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 6'
+    TabOrder = 5
+    OnClick = btnNmr6Click
+  end
+  object btnNmr7: TButton
+    Left = 88
+    Top = 210
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 7'
+    TabOrder = 6
+    OnClick = btnNmr7Click
   end
 end

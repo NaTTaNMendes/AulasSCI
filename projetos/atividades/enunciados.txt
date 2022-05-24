@@ -7,3 +7,9 @@ Atividades grupo 1
 3- Escreva um algoritmo que leia 10 números e imprima o menor deles;
 
 4- Escreva um algoritmo que recebe 10 números e imprima o menor deles e quantas vezes o menor número foi lido;
+
+5- Leia 10 números e apresente o menor número e o maior entre eles. Depois retire o maior e o menor e realize a média em relação aos 8 números restantes;
+
+6- Escreva um algoritmo que leia um número inteiro entre 100 e 999 e imprima na saída cada um dos algarismos que compõem o número.
+
+7- Uma empresa paga R$ 15.00 por hora normal trabalhada e R$ 30.00 por hora extra. Considerando que um funcionário fez 2000 horas normais trabalhadas e 300 horas extras em um ano, qual seria o salário anual deste trabalhador?;

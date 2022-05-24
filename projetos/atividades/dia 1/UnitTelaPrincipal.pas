@@ -12,10 +12,16 @@ type
     btnNmr2: TButton;
     btnNmr3: TButton;
     btnNmr4: TButton;
+    btnNmr5: TButton;
+    btnNmr6: TButton;
+    btnNmr7: TButton;
     procedure btnNmr1Click(Sender: TObject);
     procedure btnNmr2Click(Sender: TObject);
     procedure btnNmr3Click(Sender: TObject);
     procedure btnNmr4Click(Sender: TObject);
+    procedure btnNmr5Click(Sender: TObject);
+    procedure btnNmr6Click(Sender: TObject);
+    procedure btnNmr7Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -174,6 +180,103 @@ begin
               + ' e os menores números foram lidos '
               + IntToStr(wMenorQuantidade) + ' vezes');
 
+end;
+
+procedure TFormPrincipal.btnNmr5Click(Sender: TObject); {PRECISO CORRIGIR}
+var
+  wStringList: TStringList;
+  wMaiorNumero: Integer;
+  wMenorNumero: Integer;
+  wI: Integer;
+  wMedia: Currency;
+  wTotal: Integer;
+  wQuantidade: Integer;
+begin
+
+  // Instanciando variáveis
+  wStringList:= TStringList.Create;
+  wStringList.Add('5');
+  wStringList.Add('3');
+  wStringList.Add('1');
+  wStringList.Add('7');
+  wStringList.Add('9');
+  wStringList.Add('12');
+  wStringList.Add('12');
+  wStringList.Add('12');
+  wStringList.Add('12');
+  wStringList.Add('12');
+  wMenorNumero:= StrToInt(wStringList[0]);
+  wMaiorNumero:= StrToInt(wStringList[0]);
+
+  // Encontra o maior e o menor número
+  for wI := 0 to wStringList.Count-1 do
+    begin
+      if StrToInt(wStringList[wI]) > wMaiorNumero then
+        begin
+          wMaiorNumero:= StrToInt(wStringList[wI]);
+        end
+      else if StrToInt(wStringList[wI]) < wMenorNumero then
+        begin
+          wMenorNumero:= StrToInt(wStringList[wI]);
+        end;           
+    end;
+
+  // Deleta todos os valores iguais ao menor e maior números
+  for wI := 0 to wStringList.Count-1 do
+    begin
+      if (StrToInt(wStringList[wI]) <> wMaiorNumero) and (StrToInt(wStringList[wI]) <> wMenorNumero) then
+        begin
+          wTotal:= wTotal + StrToInt(wStringList[wI]);
+          wQuantidade:= wQuantidade + 1;
+        end;
+    end;
+
+  // Calcula a média dos números diferentes do maior e do menor
+  wMedia:= wTotal / wQuantidade;
+
+  // Retorna os dados para o usuário
+  ShowMessage('Maior número: ' + IntToStr(wMaiorNumero) + #10 
+              + 'Menor número: ' + IntToStr(wMenorNumero) + #10 
+              + 'Média dos valores: ' + CurrToStr(wMedia));
+    
+end;
+
+procedure TFormPrincipal.btnNmr6Click(Sender: TObject);
+var
+  wNumero: Integer;
+  wString: String;
+begin
+
+  // Instanciando variáveis
+  wNumero:= 250;
+  wString:= IntToStr(wNumero);
+
+  // Retorna os algarismos para o usuário
+  ShowMessage('O número: ' + IntToStr(wNumero) + ' possui os seguintes algarismos: ' + wString[1] + ', ' + wString[2] + ', ' + wString[3]);
+
+  end;
+
+procedure TFormPrincipal.btnNmr7Click(Sender: TObject);
+var
+  wValorPagamento: Currency;
+  wValorHoraExtra: Currency;
+  wQtdHorasNormais: Integer;
+  wQtdHorasExtras: Integer;
+  wSalarioAnual: Currency;
+begin
+
+  // Instanciando variáveis
+  wValorPagamento:= 15.0;
+  wValorHoraExtra:= 30.0;
+  wQtdHorasNormais:= 2000;
+  wQtdHorasExtras:= 300;
+
+  // Calculando o salário anual
+  wSalarioAnual:= (wValorPagamento * wQtdHorasNormais) + (wValorHoraExtra * wQtdHorasExtras);
+
+  // Retorna o salário anual para o usuário
+  ShowMessage('Salário anual: ' + CurrToStr(wSalarioAnual));
+  
 end;
 
 end.
