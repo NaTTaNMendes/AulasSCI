@@ -51,13 +51,13 @@ begin
   // Encontra o maior número
   wMaiorNumero:= wNumero1;
   if wNumero2 > wMaiorNumero then
-    begin
-      wMaiorNumero:= wNumero2;
-    end;
+     begin
+       wMaiorNumero:= wNumero2;
+     end;
   if wNumero3 > wMaiorNumero then
-    begin
-      wMaiorNumero:= wNumero3;
-    end;
+     begin
+       wMaiorNumero:= wNumero3;
+     end;
 
   // Retorna o maior para o usuário
   showMessage('O maior número entre ' + IntToStr(wNumero1) + ', '
@@ -107,7 +107,7 @@ begin
     end;
 
   // Retorna para o usuário
-  showMessage(IntToStr(wNumero1) + ', ' + IntToStr(wNumero2) + ', ' + IntToStr(wNumero3));
+  ShowMessage(IntToStr(wNumero1) + ', ' + IntToStr(wNumero2) + ', ' + IntToStr(wNumero3));
 
   end;
 
@@ -115,22 +115,22 @@ procedure TFormPrincipal.btnNmr3Click(Sender: TObject);
 var
   wStringList: TStringList;
   wMaiorNumero: Integer;
-  I: Integer;
+  wI: Integer;
 begin
 
   // Instanciando variáveis
   wStringList:= TstringList.Create;
-  wStringList.Add('98');
+  wStringList.Add('2342');
   wStringList.Add('5');
   wStringList.Add('2041');
   wMaiorNumero:= StrToInt(wStringList[0]);
 
   // Encontra o maior número
-  for I := 0 to wStringList.Count-1 do
+  for wI := 0 to wStringList.Count-1 do
     begin
-      if StrToInt(wStringList[I]) > wMaiorNumero then
+      if StrToInt(wStringList[wI]) > wMaiorNumero then
         begin
-          wMaiorNumero:= StrToInt(wStringList[I]);
+          wMaiorNumero:= StrToInt(wStringList[wI]);
         end;
     end;
 
@@ -144,7 +144,7 @@ var
   wVetor: array[0..9] of Integer;
   wMenorNumero: Integer;
   wMenorQuantidade: Integer;
-  I: Integer;
+  wI: Integer;
 begin
 
   // Instanciando variáveis
@@ -162,14 +162,14 @@ begin
   wMenorQuantidade:= 0;
 
   // Encontra o menor número e a quantidade de vezes que ele aparece
-  for I := 0 to 9 do
+  for wI := 0 to 9 do
     begin
-      if wVetor[I] < wMenorNumero then
+      if wVetor[wI] < wMenorNumero then
         begin
-          wMenorNumero:= wVetor[I];
+          wMenorNumero:= wVetor[wI];
           wMenorQuantidade:= 1;
         end
-      else if wVetor[I] = wMenorNumero then
+      else if wVetor[wI] = wMenorNumero then
          begin
           wMenorQuantidade:= wMenorQuantidade + 1;
          end;
@@ -182,7 +182,7 @@ begin
 
 end;
 
-procedure TFormPrincipal.btnNmr5Click(Sender: TObject); {PRECISO CORRIGIR}
+procedure TFormPrincipal.btnNmr5Click(Sender: TObject);
 var
   wStringList: TStringList;
   wMaiorNumero: Integer;
@@ -212,27 +212,21 @@ begin
   for wI := 0 to wStringList.Count-1 do
     begin
       if StrToInt(wStringList[wI]) > wMaiorNumero then
-        begin
-          wMaiorNumero:= StrToInt(wStringList[wI]);
-        end
+         begin
+           wMaiorNumero:= StrToInt(wStringList[wI]);
+         end
       else if StrToInt(wStringList[wI]) < wMenorNumero then
-        begin
-          wMenorNumero:= StrToInt(wStringList[wI]);
-        end;           
+         begin
+           wMenorNumero:= StrToInt(wStringList[wI]);
+         end;
+      wTotal:= wTotal + StrToInt(wStringList[wI]);
+      wQuantidade:= wQuantidade + 1;
     end;
 
-  // Deleta todos os valores iguais ao menor e maior números
-  for wI := 0 to wStringList.Count-1 do
-    begin
-      if (StrToInt(wStringList[wI]) <> wMaiorNumero) and (StrToInt(wStringList[wI]) <> wMenorNumero) then
-        begin
-          wTotal:= wTotal + StrToInt(wStringList[wI]);
-          wQuantidade:= wQuantidade + 1;
-        end;
-    end;
+  // Calcula a média dos números sem o maior e o menor
+  wMedia:= (wTotal - (wMaiorNumero + wMenorNumero)) / (wQuantidade - 2);
 
-  wMedia:= wTotal / wQuantidade;
-
+  // Retorna os dados para o usuário
   ShowMessage('Maior número: ' + IntToStr(wMaiorNumero) + #10 
               + 'Menor número: ' + IntToStr(wMenorNumero) + #10 
               + 'Média dos valores: ' + CurrToStr(wMedia));
@@ -246,17 +240,19 @@ var
 begin
 
   // Instanciando variáveis
-  wNumero:= 250;
+  wNumero:= 550;
   wString:= IntToStr(wNumero);
 
   // Retorna os algarismos para o usuário
-  ShowMessage('O número: ' + IntToStr(wNumero) + ' possui os seguintes algarismos: ' + wString[1] + ', ' + wString[2] + ', ' + wString[3]);
+  ShowMessage('O número: ' + IntToStr(wNumero)
+              + ' possui os seguintes algarismos: '
+              + wString[1] + ', ' + wString[2] + ', ' + wString[3]);
 
   end;
 
 procedure TFormPrincipal.btnNmr7Click(Sender: TObject);
 var
-  wValorPagamento: Currency;
+  wValorHora: Currency;
   wValorHoraExtra: Currency;
   wQtdHorasNormais: Integer;
   wQtdHorasExtras: Integer;
@@ -264,16 +260,16 @@ var
 begin
 
   // Instanciando variáveis
-  wValorPagamento:= 15.0;
+  wValorHora:= 15.0;
   wValorHoraExtra:= 30.0;
   wQtdHorasNormais:= 2000;
   wQtdHorasExtras:= 300;
 
   // Calculando o salário anual
-  wSalarioAnual:= (wValorPagamento * wQtdHorasNormais) + (wValorHoraExtra * wQtdHorasExtras);
+  wSalarioAnual:= (wValorHora * wQtdHorasNormais) + (wValorHoraExtra * wQtdHorasExtras);
 
   // Retorna o salário anual para o usuário
-  ShowMessage('Salário anual: ' + CurrToStr(wSalarioAnual));
+  ShowMessage('Salário anual: ' + CurrToStrF(wSalarioAnual, ffCurrency, 2));
   
 end;
 
