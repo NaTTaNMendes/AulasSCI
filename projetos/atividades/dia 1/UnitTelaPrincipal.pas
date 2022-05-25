@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, DateUtils;
 
 type
   TFormPrincipal = class(TForm)
@@ -15,6 +15,10 @@ type
     btnNmr5: TButton;
     btnNmr6: TButton;
     btnNmr7: TButton;
+    btnNmr8: TButton;
+    btnNmr9: TButton;
+    btnNmr10: TButton;
+    btnNmr11: TButton;
     procedure btnNmr1Click(Sender: TObject);
     procedure btnNmr2Click(Sender: TObject);
     procedure btnNmr3Click(Sender: TObject);
@@ -22,6 +26,10 @@ type
     procedure btnNmr5Click(Sender: TObject);
     procedure btnNmr6Click(Sender: TObject);
     procedure btnNmr7Click(Sender: TObject);
+    procedure btnNmr8Click(Sender: TObject);
+    procedure btnNmr9Click(Sender: TObject);
+    procedure btnNmr10Click(Sender: TObject);
+    procedure btnNmr11Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,6 +42,57 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFormPrincipal.btnNmr10Click(Sender: TObject);
+var
+  wDataInformada: TDateTime;
+  wDiaSemana: Integer;
+  wDiasNaSemana: array [1..7] of String;
+begin
+
+  // Instanciando variáveis
+  wDataInformada:= EncodeDate(2022, 05, 25);
+  wDiasNaSemana[1]:= 'Domingo';
+  wDiasNaSemana[2]:= 'Segunda-Feira';
+  wDiasNaSemana[3]:= 'Terça-Feira';
+  wDiasNaSemana[4]:= 'Quarta-Feira';
+  wDiasNaSemana[5]:= 'Quinta-Feira';
+  wDiasNaSemana[6]:= 'Sexta-Feira';
+  wDiasNaSemana[7]:= 'Sábado';
+
+  // Coleta o dia da semana
+  wDiaSemana:= DayOfWeek(wDataInformada);
+
+  // Retorna o dia para o usuário
+  ShowMessage('Dia da semana: ' + wDiasNaSemana[wDiaSemana]);
+
+end;
+
+procedure TFormPrincipal.btnNmr11Click(Sender: TObject);
+var
+  wAnoInicialDate, wAnoFinalDate: TDate;
+  wAnoInicial, WAnoFinal, WDiferencaAnos, wI, wI2, wQuantidade: Integer;
+begin
+
+  // Instanciando variáveis
+  wAnoInicialDate:= EncodeDate(2000, 01, 01);
+  wAnoFinalDate:= EncodeDate(2022, 05, 25);
+  wQuantidade:= 0;
+  wAnoInicial:= 2000;
+  wAnoFinal:= 2022;
+  wDiferencaAnos:= WAnoFinal - wAnoInicial;
+
+  for wI := 1 to WDiferencaAnos do
+     begin
+       for wI2 := 1 to 12 do
+          begin
+            if (True) then {CONTINUAR DAQUI}
+
+          end;
+
+     end;
+
+end;
 
 procedure TFormPrincipal.btnNmr1Click(Sender: TObject);
 var
@@ -190,7 +249,6 @@ var
   wI: Integer;
   wMedia: Currency;
   wTotal: Integer;
-  wQuantidade: Integer;
 begin
 
   // Instanciando variáveis
@@ -220,11 +278,10 @@ begin
            wMenorNumero:= StrToInt(wStringList[wI]);
          end;
        wTotal:= wTotal + StrToInt(wStringList[wI]);
-       wQuantidade:= wQuantidade + 1;
      end;
 
   // Calcula a média dos números sem o maior e o menor
-  wMedia:= (wTotal - (wMaiorNumero + wMenorNumero)) / (wQuantidade - 2);
+  wMedia:= (wTotal - (wMaiorNumero + wMenorNumero)) / (wStringList.Count - 2);
 
   // Retorna os dados para o usuário
   ShowMessage('Maior número: ' + IntToStr(wMaiorNumero) + #10 
@@ -248,7 +305,7 @@ begin
               + ' possui os seguintes algarismos: '
               + wString[1] + ', ' + wString[2] + ', ' + wString[3]);
 
-  end;
+end;
 
 procedure TFormPrincipal.btnNmr7Click(Sender: TObject);
 var
@@ -271,6 +328,85 @@ begin
   // Retorna o salário anual para o usuário
   ShowMessage('Salário anual: ' + CurrToStrF(wSalarioAnual, ffCurrency, 2));
   
+end;
+
+procedure TFormPrincipal.btnNmr8Click(Sender: TObject);
+var
+  wValorHora: Currency;
+  wValorHoraExtra: Currency;
+  wQtdHorasNormais: Integer;
+  wQtdHorasExtras: Integer;
+  wSalarioAnual: Currency;
+  wAdicionalHorasExtras: Currency;
+  wAdicionalExtra: Currency;
+  wQtdHorasExtrasBonus: Integer;
+  wQtdHorasNormaisBonus: Integer;
+  wAdicionalNormal: Currency;
+  wImpostoAnual: Currency;
+  wSalarioTotal: Currency;
+  wImpostoPago: Currency;
+  wTotalHoraExtra: Currency;
+begin
+
+  // Instanciando variáveis
+  wValorHora:= 15.0;
+  wValorHoraExtra:= 30.0;
+  wQtdHorasNormais:= 2000;
+  wQtdHorasExtras:= 300;
+  wAdicionalExtra:= 0.10;
+  wQtdHorasExtrasBonus:= 100;
+  wQtdHorasNormaisBonus:= 1500;
+  wAdicionalNormal:= 2.0;
+  wImpostoAnual:= 18.0;
+  wAdicionalHorasExtras:= 0;
+  wSalarioTotal:= 0;
+  wImpostoPago:= 0;
+  wTotalHoraExtra:= wValorHoraExtra * wQtdHorasExtras;
+
+  // Calcula o valor adicional caso a quantidade de horas extras passe a meta
+  if wQtdHorasExtras > wQtdHorasExtrasBonus then
+     begin
+       wAdicionalHorasExtras:= wTotalHoraExtra * wAdicionalExtra;
+     end;
+
+  // Calcula o valor recebido em horas extras
+  wTotalHoraExtra:= wTotalHoraExtra + wAdicionalHorasExtras;
+
+  // Calcula o adicional por hora normal e o imposto do usuário
+  if wQtdHorasNormais > wQtdHorasNormaisBonus then
+     begin
+       wValorHora:= wValorHora + wAdicionalNormal;
+       wSalarioAnual:= (wValorHora * wQtdHorasNormais);
+       wImpostoPago:= (wSalarioAnual * (wImpostoAnual/100));
+     end;
+
+  // Calcula o valor do salário anual e total do funcionário
+  wSalarioAnual:= (wValorHora * wQtdHorasNormais);
+  wSalarioTotal:= (wSalarioAnual + wTotalHoraExtra) - wImpostoPago;
+
+  // Retorna os dados para o usuário
+  ShowMessage('Salário anual normal: ' + CurrToStrF(wSalarioAnual, ffCurrency, 2) + #10
+              + 'Valor horas extras: ' + CurrToStrF(wTotalHoraExtra, ffCurrency, 2) + #10
+              + 'Valor imposto pago: '  + CurrToStrF(wImpostoPago, ffCurrency, 2) + #10
+              + 'Salário total: ' + CurrToStrF(wSalarioTotal, ffCurrency, 2));
+
+end;
+
+procedure TFormPrincipal.btnNmr9Click(Sender: TObject); { CORRIGIR DEPOIS }
+var
+  wDataInformada: TDateTime;
+  wDias: Integer;
+begin
+
+  // Instanciando variáveis
+  wDataInformada:= EncodeDateTime(2022, 05, 26, 0, 0, 0, 0);
+
+  // Calcula entre a data atual e a informada pelo usuário
+  wDias:= DaysBetween(Now, wDataInformada) + 1;
+
+  // Retorna a diferença para o usuário
+  ShowMessage('Diferença de dias: ' + IntToStr(wDias));
+
 end;
 
 end.

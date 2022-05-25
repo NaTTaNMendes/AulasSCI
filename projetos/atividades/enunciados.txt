@@ -13,3 +13,5 @@ Atividades grupo 1
 6- Escreva um algoritmo que leia um número inteiro entre 100 e 999 e imprima na saída cada um dos algarismos que compõem o número.
 
 7- Uma empresa paga R$ 15.00 por hora normal trabalhada e R$ 30.00 por hora extra. Considerando que um funcionário fez 2000 horas normais trabalhadas e 300 horas extras em um ano, qual seria o salário anual deste trabalhador?;
+
+8- Referente ao exercícios anterior, se o funcionário ultrapassou de 100 horas extras, vamos ter que calcular um adicional de 10% em cima do valor que foi pago anual em relação a hora extra. Se o funcionário trabalhou mais de 1500 horas no ano, ele vai ter um adicional de 2 reais no valor hora dele e deverá pagar 18% de imposto em cima do valor anual. Mostre o valor da hora extra anual, o valor do salário normal anual e o valor do imposto que ele deverá pagar.
