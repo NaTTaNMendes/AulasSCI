@@ -51,7 +51,7 @@ var
 begin
 
   // Instanciando variáveis
-  wDataInformada:= EncodeDate(2022, 05, 25);
+  wDataInformada:= EncodeDate(2021, 04, 24);
   wDiasNaSemana[1]:= 'Domingo';
   wDiasNaSemana[2]:= 'Segunda-Feira';
   wDiasNaSemana[3]:= 'Terça-Feira';
@@ -70,27 +70,55 @@ end;
 
 procedure TFormPrincipal.btnNmr11Click(Sender: TObject);
 var
-  wAnoInicialDate, wAnoFinalDate: TDate;
-  wAnoInicial, WAnoFinal, WDiferencaAnos, wI, wI2, wQuantidade: Integer;
+  wDataComparada: TDate;
+  wAnoInicial: Integer;
+  WAnoFinal: Integer;
+  WDiferencaAnos: Integer;
+  wI: Integer;
+  wI2: Integer;
+  wQuantidade: Integer;
+  wAnoAtual: Integer;
+  wDiaMesRequisitado: Integer;
+  wDiaSemanaRequisitado: Integer;
+  wQuantidadeBissexto: Integer;
 begin
 
   // Instanciando variáveis
-  wAnoInicialDate:= EncodeDate(2000, 01, 01);
-  wAnoFinalDate:= EncodeDate(2022, 05, 25);
   wQuantidade:= 0;
-  wAnoInicial:= 2000;
-  wAnoFinal:= 2022;
+  wAnoInicial:= 2020;
+  wAnoFinal:= 2024;
+  wDiaMesRequisitado:= 13;                          // Aqui é informado o dia do mês em que se deseja procurar
+  wDiaSemanaRequisitado:= 6;                        // Aqui é informado o dia da semana que se deseja procurar (1 - Domingo, 2 -  Segunda, ..., 7 - Sábado)
   wDiferencaAnos:= WAnoFinal - wAnoInicial;
 
-  for wI := 1 to WDiferencaAnos do
+  if (WDiferencaAnos = 4) then
      begin
+       wQuantidadeBissexto:= 1;
+     end
+  else if WDiferencaAnos > 4 then
+     begin
+         wQuantidadeBissexto:= Trunc(WDiferencaAnos / 4);  // Calcula a quantidade de anos bissextos entre as datas
+     end;
+
+  // Encontra a quantidade de dias procurados naquelas determinadas datas do ano
+  for wI := 0 to WDiferencaAnos do
+     begin
+       wAnoAtual:= wAnoInicial + wI;
        for wI2 := 1 to 12 do
           begin
-
+            wDataComparada:= EncodeDate(wAnoAtual, wI2, wDiaMesRequisitado);
+            if DayOfTheWeek(wDataComparada) = wDiaSemanaRequisitado then
+               begin
+                 wQuantidade:= wQuantidade + 1;
+               end;
           end;
-        
-
      end;
+
+  // Remove o erro por ano bissexto
+  wQuantidade:= wQuantidade - wQuantidadeBissexto;
+
+  // Retorna a quantidade de dias para o usuário
+  ShowMessage('Quantidade de dias encontrados: ' + IntToStr(wQuantidade));
 
 end;
 
@@ -392,17 +420,17 @@ begin
 
 end;
 
-procedure TFormPrincipal.btnNmr9Click(Sender: TObject); { CORRIGIR DEPOIS }
+procedure TFormPrincipal.btnNmr9Click(Sender: TObject);
 var
   wDataInformada: TDateTime;
   wDias: Integer;
 begin
 
   // Instanciando variáveis
-  wDataInformada:= EncodeDateTime(2022, 05, 26, 0, 0, 0, 0);
+  wDataInformada:= EncodeDateTime(2022, 05, 27, 0, 0, 0, 0);
 
   // Calcula entre a data atual e a informada pelo usuário
-  wDias:= DaysBetween(Now, wDataInformada) + 1;
+  wDias:= DaysBetween(Today, wDataInformada);
 
   // Retorna a diferença para o usuário
   ShowMessage('Diferença de dias: ' + IntToStr(wDias));

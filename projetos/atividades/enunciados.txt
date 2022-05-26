@@ -15,3 +15,9 @@ Atividades grupo 1
 7- Uma empresa paga R$ 15.00 por hora normal trabalhada e R$ 30.00 por hora extra. Considerando que um funcionário fez 2000 horas normais trabalhadas e 300 horas extras em um ano, qual seria o salário anual deste trabalhador?;
 
 8- Referente ao exercícios anterior, se o funcionário ultrapassou de 100 horas extras, vamos ter que calcular um adicional de 10% em cima do valor que foi pago anual em relação a hora extra. Se o funcionário trabalhou mais de 1500 horas no ano, ele vai ter um adicional de 2 reais no valor hora dele e deverá pagar 18% de imposto em cima do valor anual. Mostre o valor da hora extra anual, o valor do salário normal anual e o valor do imposto que ele deverá pagar.
+
+9- Faça um programa que retorne quantos dias faltam da data atual até uma data fornecida pelo usuário.
+
+10- Retorne o dia da semana de uma data obtida fornecida pelo usuário.
+
+11- É incomum uma sexta-feira treze? O usuário vai informar um ano inicial e final, e você vai listar todas as sextas feiras trezes que existem nesse período. Existem alguns fatos que você precisa saber para resolver esse problema: Abril, junho, setembro e novembro tem 30 dias, todos os outros tem 31 exceto fevereiro que tem 28. 
