@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, DateUtils;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, DateUtils, StrUtils;
 
 type
   TFormPrincipal = class(TForm)
@@ -19,6 +19,12 @@ type
     btnNmr9: TButton;
     btnNmr10: TButton;
     btnNmr11: TButton;
+    btnNmr12: TButton;
+    btnNmr131: TButton;
+    btnNmr132: TButton;
+    btnNmr14: TButton;
+    btnNmr15: TButton;
+    btnNmr16: TButton;
     procedure btnNmr1Click(Sender: TObject);
     procedure btnNmr2Click(Sender: TObject);
     procedure btnNmr3Click(Sender: TObject);
@@ -30,6 +36,12 @@ type
     procedure btnNmr9Click(Sender: TObject);
     procedure btnNmr10Click(Sender: TObject);
     procedure btnNmr11Click(Sender: TObject);
+    procedure btnNmr12Click(Sender: TObject);
+    procedure btnNmr131Click(Sender: TObject);
+    procedure btnNmr132Click(Sender: TObject);
+    procedure btnNmr14Click(Sender: TObject);
+    procedure btnNmr15Click(Sender: TObject);
+    procedure btnNmr16Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -108,14 +120,193 @@ begin
   // Gera a String para o retorno
   for wI := 0 to wListaData.Count-1 do
      begin
-       wRetorno:= wRetorno + ' - ' + wListaData[wI];
+       if wI = 0 then
+          begin
+            wRetorno:= wListaData[wI];
+          end
+       else
+          begin
+            wRetorno:= wRetorno + '  ' + wListaData[wI];
+          end;
      end;
   wRetorno:= 'Quantidade de dias encontrados: ' + IntToStr(wListaData.Count)
-             + #10 + #10 + 'Dias:' + #10 + wRetorno;
+             + #10 + #10 + 'Datas:' + #10 + #10 + wRetorno;
 
   // Retorna os dados para o usuário
-  ShowMessage('Quantidade de dias encontrados: ' + IntToStr(wQuantidade)
-              + #10 + #10 + 'Dias:' + #10 + wRetorno);
+  ShowMessage(wRetorno);
+
+end;
+
+procedure TFormPrincipal.btnNmr12Click(Sender: TObject);
+var
+  wTextoEntrada, wTextoSaida: String;
+  wI: Integer;
+begin
+
+  // Instanciando variáveis
+  wTextoEntrada:= 'SCI Sistemas Contábeis';
+  wTextoSaida:= '';
+
+  // inverte o texto
+  for wI := Length(wTextoEntrada) downto 1 do
+     begin
+       wTextoSaida:= wTextoSaida + wTextoEntrada[wI];
+     end;
+
+  // Retorna os textos para o usuário
+  ShowMessage('Texto original: ' + wTextoEntrada + #10
+              + 'Texto invertido: ' + wTextoSaida);
+
+end;
+
+procedure TFormPrincipal.btnNmr131Click(Sender: TObject);
+var
+  wTextoInformado, wTextoSaida: String;
+begin
+
+  // Instanciando variáveis
+  wTextoInformado:= 'Vou ficar grande';
+
+  // Coloca todas as letras em upperCase
+  wTextoSaida:= AnsiUpperCase(wTextoInformado);
+
+  //Retorna para o usuário
+  ShowMessage('Texto informado: ' + wTextoInformado
+              + #10 + 'Texto em maiúsculas: ' + wTextoSaida);
+
+end;
+
+procedure TFormPrincipal.btnNmr132Click(Sender: TObject);
+var
+  wTextoInformado, wTextoSaida: String;
+begin
+
+   // Instanciando variáveis
+   wTextoInformado:= 'VOU FICAR PEQUENO';
+
+   // Coloca todas as letras em upperCase
+   wTextoSaida:= AnsiLowerCase(wTextoInformado);
+
+   //Retorna para o usuário
+   ShowMessage('Texto informado: ' + wTextoInformado
+               + #10 + 'Texto em minúsculas: ' + wTextoSaida);
+
+end;
+
+procedure TFormPrincipal.btnNmr14Click(Sender: TObject);
+var
+  wTexto: String;
+  wTextoSaida: String;
+  wI: Integer;
+begin
+
+  // Instanciando variáveis
+  wTexto:= 'sci sistemas contábeis';
+
+  // Transforma em maiúscula todas as letras após um espaço
+  for wI := 1 to Length(wtexto) do
+     begin
+       if wI = 1 then
+          begin
+            wTextoSaida:= AnsiUpperCase(wTexto[wI]);
+          end
+       else if wTexto[wI - 1] = ' ' then
+          begin
+            wTextoSaida:= wTextoSaida + AnsiUpperCase(wTexto[wI]);
+          end
+       else
+          begin
+            wTextoSaida:= wTextoSaida + wTexto[wI];
+          end;
+     end;
+
+  // Retorna os textos para o usuário
+  ShowMessage('Texto informado: ' + wTexto + #10
+              + 'Texto convetido: ' + wTextoSaida);
+
+end;
+
+procedure TFormPrincipal.btnNmr15Click(Sender: TObject);
+var
+  wTexto, wTextoMaiuscula: String;
+  wQtdLetras: Integer;
+  wQtdConsoantes: Integer;
+  wQtdVogais: Integer;
+  wI: Integer;
+  wVogais : String;
+  wConsoantes: String;
+begin
+
+  // Instanciando variáveis
+  wTexto:= 'SCI Sistemas Contábeis é uma empresa de tecnologia';
+  wTextoMaiuscula:= AnsiUpperCase(wTexto);
+  wVogais:= 'AEIOUÁÉÍÓÚ';
+  wConsoantes:= 'BCDFGHJKLMNPQRSTVWXYZ';
+
+  // Coleta a quantidade de vogais e consoantes
+  for wI := 1 to Length(wTextoMaiuscula) do
+     begin
+       if Pos(wTextoMaiuscula[wI], wVogais) > 0 then
+          begin
+            wQtdVogais:= wQtdVogais + 1;
+          end;
+
+       if Pos(wTextoMaiuscula[wI], wConsoantes) > 0 then
+          begin
+            wQtdConsoantes:= wQtdConsoantes + 1;
+          end;
+     end;
+
+  // Calcula a quantidade de letras
+  wQtdLetras:= wQtdVogais + wQtdConsoantes;
+
+  // Retorna os dados para o usuário
+  ShowMessage('Texto informado: ' + wTexto + #10
+              + 'Quantidade de letras: ' + IntToStr(wQtdLetras)
+              + #10 + 'Quantidade de vogais: ' + IntToStr(wQtdVogais)
+              + #10 + 'Quantidade de consoantes: ' + IntToStr(wQtdConsoantes));
+
+end;
+
+procedure TFormPrincipal.btnNmr16Click(Sender: TObject);
+var
+  wTexto, wTextoMaiuscula: String;
+  wQtdLetras: Integer;
+  wI: Integer;
+  wVogais : String;
+  wConsoantes: String;
+begin
+
+  // Instanciando variáveis
+  wTexto:= 'SCI Sistemas Contábeis é uma empresa de tecnologia';
+  wTextoMaiuscula:= AnsiUpperCase(wTexto);
+  wVogais:= 'AEIOUÁÉÍÓÚ';
+  wConsoantes:= 'BCDFGHJKLMNPQRSTVWXYZ';
+
+  // Coleta a quantidade de vogais e consoantes
+  for wI := 1 to Length(wTextoMaiuscula) do
+     begin
+       if (Pos(wTextoMaiuscula[wI], wVogais) > 0) or (Pos(wTextoMaiuscula[wI], wConsoantes) > 0) then
+          begin
+            wQtdLetras:= wQtdLetras + 1;
+          end;
+     end;
+
+  // Retorna os dados para o usuário
+  if wQtdLetras = 50 then
+     begin
+       ShowMessage('Texto informado: ' + wTexto + #10
+                   + IntToStr(wQtdLetras) + #10 + 'A frase chegou ao limite de letras');
+     end
+  else if wQtdLetras > 50 then
+     begin
+       ShowMessage('Texto informado: ' + wTexto + #10
+                   + IntToStr(wQtdLetras) + #10 + 'A frase não será aceita pois superou o limite de caracteres.');
+     end
+  else
+     begin
+       ShowMessage('Texto informado: ' + wTexto + #10 + IntToStr(wQtdLetras) + #10 + 'Texto aprovado');
+     end;
 
 end;
 

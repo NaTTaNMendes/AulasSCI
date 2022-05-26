@@ -114,4 +114,58 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 10
     OnClick = btnNmr11Click
   end
+  object btnNmr12: TButton
+    Left = 144
+    Top = 55
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 12'
+    TabOrder = 11
+    OnClick = btnNmr12Click
+  end
+  object btnNmr131: TButton
+    Left = 144
+    Top = 86
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 13.1'
+    TabOrder = 12
+    OnClick = btnNmr131Click
+  end
+  object btnNmr132: TButton
+    Left = 144
+    Top = 117
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 13.2'
+    TabOrder = 13
+    OnClick = btnNmr132Click
+  end
+  object btnNmr14: TButton
+    Left = 144
+    Top = 148
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 14'
+    TabOrder = 14
+    OnClick = btnNmr14Click
+  end
+  object btnNmr15: TButton
+    Left = 144
+    Top = 179
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 15'
+    TabOrder = 15
+    OnClick = btnNmr15Click
+  end
+  object btnNmr16: TButton
+    Left = 144
+    Top = 210
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 16'
+    TabOrder = 16
+    OnClick = btnNmr16Click
+  end
 end
