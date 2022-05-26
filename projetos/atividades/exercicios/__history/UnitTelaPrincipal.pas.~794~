@@ -273,8 +273,9 @@ var
   wTexto, wTextoMaiuscula: String;
   wQtdLetras: Integer;
   wI: Integer;
-  wVogais : String;
+  wVogais: String;
   wConsoantes: String;
+  wSaida: String;
 begin
 
   // Instanciando variáveis
@@ -283,7 +284,7 @@ begin
   wVogais:= 'AEIOUÁÉÍÓÚ';
   wConsoantes:= 'BCDFGHJKLMNPQRSTVWXYZ';
 
-  // Coleta a quantidade de vogais e consoantes
+  // Coleta a quantidade de letras
   for wI := 1 to Length(wTextoMaiuscula) do
      begin
        if (Pos(wTextoMaiuscula[wI], wVogais) > 0) or (Pos(wTextoMaiuscula[wI], wConsoantes) > 0) then
@@ -305,7 +306,8 @@ begin
      end
   else
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10 + IntToStr(wQtdLetras +) 'Texto aprovado');
+       ShowMessage('Texto informado: ' + wTexto + #10
+                   + IntToStr(wQtdLetras) + #10 + 'Texto aprovado');
      end;
 
 end;

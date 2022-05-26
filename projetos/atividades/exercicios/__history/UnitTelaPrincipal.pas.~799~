@@ -273,17 +273,18 @@ var
   wTexto, wTextoMaiuscula: String;
   wQtdLetras: Integer;
   wI: Integer;
-  wVogais : String;
+  wVogais: String;
   wConsoantes: String;
+  wSaida: String;
 begin
 
   // Instanciando variáveis
-  wTexto:= 'SCI Sistemas Contábeis é uma empresa de tecnologiaaaaaaaaaa';
+  wTexto:= 'SCI Sistemas Contábeis é uma empresa de tecnologia';
   wTextoMaiuscula:= AnsiUpperCase(wTexto);
   wVogais:= 'AEIOUÁÉÍÓÚ';
   wConsoantes:= 'BCDFGHJKLMNPQRSTVWXYZ';
 
-  // Coleta a quantidade de vogais e consoantes
+  // Coleta a quantidade de letras
   for wI := 1 to Length(wTextoMaiuscula) do
      begin
        if (Pos(wTextoMaiuscula[wI], wVogais) > 0) or (Pos(wTextoMaiuscula[wI], wConsoantes) > 0) then
@@ -295,20 +296,18 @@ begin
   // Retorna os dados para o usuário
   if wQtdLetras = 50 then
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10
-                   + IntToStr(wQtdLetras) + #10 + 'A frase chegou ao limite de letras');
+       wSaida:= 'A frase chegou ao limite de letras';
      end
   else if wQtdLetras > 50 then
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10
-                   + IntToStr(wQtdLetras) + #10 + 'A frase não será aceita pois superou o limite de caracteres.');
+       wSaida:= 'A frase não será aceita pois superou o limite de caracteres.';
      end
   else
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10
-                   + IntToStr(wQtdLetras) + #10 + 'Texto aprovado');
+       wSaida:= 'Texto aprovado';
      end;
 
+  ShowMessage('Texto informado: ' + wTexto + #10 + IntToStr(wQtdLetras) + #10 + wSaida);
 end;
 
 procedure TFormPrincipal.btnNmr1Click(Sender: TObject);

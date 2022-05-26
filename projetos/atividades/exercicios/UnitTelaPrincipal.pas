@@ -275,6 +275,7 @@ var
   wI: Integer;
   wVogais: String;
   wConsoantes: String;
+  wSaida: String;
 begin
 
   // Instanciando variáveis
@@ -295,19 +296,17 @@ begin
   // Retorna os dados para o usuário
   if wQtdLetras = 50 then
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10
-                   + IntToStr(wQtdLetras) + #10 + 'A frase chegou ao limite de letras');
+       wSaida:= 'A frase chegou ao limite de letras';
      end
   else if wQtdLetras > 50 then
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10
-                   + IntToStr(wQtdLetras) + #10 + 'A frase não será aceita pois superou o limite de caracteres.');
+       wSaida:= 'A frase não será aceita pois superou o limite de caracteres.';
      end
   else
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10
-                   + IntToStr(wQtdLetras) + #10 + 'Texto aprovado');
+       wSaida:= 'Texto aprovado';
      end;
+  ShowMessage('Texto informado: ' + wTexto + #10 + IntToStr(wQtdLetras) + #10 + wSaida);
 
 end;
 

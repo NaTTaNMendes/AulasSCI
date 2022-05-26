@@ -273,7 +273,7 @@ var
   wTexto, wTextoMaiuscula: String;
   wQtdLetras: Integer;
   wI: Integer;
-  wVogais : String;
+  wVogais: String;
   wConsoantes: String;
 begin
 
@@ -283,7 +283,7 @@ begin
   wVogais:= 'AEIOUÁÉÍÓÚ';
   wConsoantes:= 'BCDFGHJKLMNPQRSTVWXYZ';
 
-  // Coleta a quantidade de vogais e consoantes
+  // Coleta a quantidade de letras
   for wI := 1 to Length(wTextoMaiuscula) do
      begin
        if (Pos(wTextoMaiuscula[wI], wVogais) > 0) or (Pos(wTextoMaiuscula[wI], wConsoantes) > 0) then
@@ -300,11 +300,13 @@ begin
      end
   else if wQtdLetras > 50 then
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10 + 'A frase não será aceita pois superou o limite de caracteres.');
+       ShowMessage('Texto informado: ' + wTexto + #10
+                   + IntToStr(wQtdLetras) + #10 + 'A frase não será aceita pois superou o limite de caracteres.');
      end
   else
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10 + 'Texto aprovado');
+       ShowMessage('Texto informado: ' + wTexto + #10
+                   + IntToStr(wQtdLetras) + #10 + 'Texto aprovado');
      end;
 
 end;
