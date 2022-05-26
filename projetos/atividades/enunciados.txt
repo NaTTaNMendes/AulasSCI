@@ -20,4 +20,16 @@ Atividades grupo 1
 
 10- Retorne o dia da semana de uma data obtida fornecida pelo usuário.
 
-11- É incomum uma sexta-feira treze? O usuário vai informar um ano inicial e final, e você vai listar todas as sextas feiras trezes que existem nesse período. Existem alguns fatos que você precisa saber para resolver esse problema: Abril, junho, setembro e novembro tem 30 dias, todos os outros tem 31 exceto fevereiro que tem 28. 
+11- É incomum uma sexta-feira treze? O usuário vai informar um ano inicial e final, e você vai listar todas as sextas feiras trezes que existem nesse período. Existem alguns fatos que você precisa saber para resolver esse problema: Abril, junho, setembro e novembro tem 30 dias, todos os outros tem 31 exceto fevereiro que tem 28.
+
+12- Escreva um algoritmo que leia uma palvra e inverta as letras. EX: "SCI Sistemas Contábeis" = "siebatnoC sametsiS ICS"
+
+13.1- Escreva um algoritmo que leia uma palavra e coloque todas as letras em maiúsculo.
+
+13.2- Escreva um algoritmo que leia uma palavra e coloque todas as letras em minúsculo.
+
+14- Escreva um algoritmo que leia uma frase e coloque a primeira letra de cada palavra em maiúsculo. EX: "SCI sistemas contábeis" = "SCI Sistemas Contábeis"
+
+15- Retorne a quantidade de letras de uma frase. Ex: "SCI Sistemas Contábeis é uma empresa de tecnologia." - 43 letras, quantidade de consoantes e quantidade de vogais.
+
+16- Referente ao exercício anterior, supondo que o sistema só aceite 50 letras em um campo. Se a frase tiver 50 letras apresente ao usuário que a frase chegou ao limite de caracteres, mas se a frase passar de 50 letras apresente que a frase não será aceita pois é superior a quantidade de caracteres permitidos.
