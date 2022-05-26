@@ -76,21 +76,20 @@ var
   WDiferencaAnos: Integer;
   wI: Integer;
   wI2: Integer;
-  wQuantidade: Integer;
   wAnoAtual: Integer;
   wDiaMesRequisitado: Integer;
   wDiaSemanaRequisitado: Integer;
   wRetorno: String;
-  wStringList: TStringList;
+  wListaData: TStringList;
 begin
 
   // Instanciando variáveis
-  wQuantidade:= 0;
   wAnoInicial:= 2000;
   wAnoFinal:= 2010;
   wDiaMesRequisitado:= 13;                          // Aqui é informado o dia do mês em que se deseja procurar
   wDiaSemanaRequisitado:= 5;                        // Aqui é informado o dia da semana que se deseja procurar (0 - Domingo, 1 -  Segunda, ..., 6 - Sábado)
   wDiferencaAnos:= WAnoFinal - wAnoInicial;
+  wListaData:= TStringList.Create;
 
   // Encontra a quantidade de dias procurados naquelas determinadas datas do ano
   for wI := 0 to WDiferencaAnos do
@@ -101,15 +100,28 @@ begin
             wDataComparada:= EncodeDate(wAnoAtual, wI2, wDiaMesRequisitado);
             if DayOfTheWeek(wDataComparada) = wDiaSemanaRequisitado then
                begin
-                 wQuantidade:= wQuantidade + 1;
-                 wRetorno:= wRetorno + DateToStr(wDataComparada) + #10;
+                 wListaData.Add(DateToStr(wDataComparada));
                end;
           end;
      end;
 
-  // Retorna a quantidade de dias para o usuário
-  ShowMessage('Quantidade de dias encontrados: ' + IntToStr(wQuantidade)
-              + #10 + #10 + 'Dias:' + #10 + wRetorno);
+  // Gera a String para o retorno
+  for wI := 0 to wListaData.Count-1 do
+     begin
+       if wI = 0 then
+          begin
+            wRetorno:= wListaData[wI];
+          end
+       else
+          begin
+            wRetorno:= wRetorno + '  ' + wListaData[wI];
+          end;
+     end;
+  wRetorno:= 'Quantidade de dias encontrados: ' + IntToStr(wListaData.Count)
+             + #10 + #10 + 'Datas:' + #10 + #10 + wRetorno;
+
+  // Retorna os dados para o usuário
+  ShowMessage(wRetorno);
 
 end;
 
