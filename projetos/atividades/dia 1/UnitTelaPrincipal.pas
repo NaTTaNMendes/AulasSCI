@@ -51,7 +51,7 @@ var
 begin
 
   // Instanciando variáveis
-  wDataInformada:= EncodeDate(2021, 04, 24);
+  wDataInformada:= EncodeDate(2022, 05, 30);
   wDiasNaSemana[1]:= 'Domingo';
   wDiasNaSemana[2]:= 'Segunda-Feira';
   wDiasNaSemana[3]:= 'Terça-Feira';
@@ -80,26 +80,17 @@ var
   wAnoAtual: Integer;
   wDiaMesRequisitado: Integer;
   wDiaSemanaRequisitado: Integer;
-  wQuantidadeBissexto: Integer;
+  wRetorno: String;
+  wStringList: TStringList;
 begin
 
   // Instanciando variáveis
   wQuantidade:= 0;
-  wAnoInicial:= 2020;
-  wAnoFinal:= 2028;
+  wAnoInicial:= 2000;
+  wAnoFinal:= 2010;
   wDiaMesRequisitado:= 13;                          // Aqui é informado o dia do mês em que se deseja procurar
-  wDiaSemanaRequisitado:= 6;                        // Aqui é informado o dia da semana que se deseja procurar (1 - Domingo, 2 -  Segunda, ..., 7 - Sábado)
+  wDiaSemanaRequisitado:= 5;                        // Aqui é informado o dia da semana que se deseja procurar (0 - Domingo, 1 -  Segunda, ..., 6 - Sábado)
   wDiferencaAnos:= WAnoFinal - wAnoInicial;
-
-  // Calcula a quantidade de anos bissextos entre as datas
-  if (WDiferencaAnos = 4) then
-     begin
-       wQuantidadeBissexto:= 1;
-     end
-  else if WDiferencaAnos > 4 then
-     begin
-         wQuantidadeBissexto:= Trunc(WDiferencaAnos / 4);
-     end;
 
   // Encontra a quantidade de dias procurados naquelas determinadas datas do ano
   for wI := 0 to WDiferencaAnos do
@@ -111,15 +102,14 @@ begin
             if DayOfTheWeek(wDataComparada) = wDiaSemanaRequisitado then
                begin
                  wQuantidade:= wQuantidade + 1;
+                 wRetorno:= wRetorno + DateToStr(wDataComparada) + #10;
                end;
           end;
      end;
 
-  // Remove o erro por ano bissexto
-  wQuantidade:= wQuantidade - wQuantidadeBissexto;
-
   // Retorna a quantidade de dias para o usuário
-  ShowMessage('Quantidade de dias encontrados: ' + IntToStr(wQuantidade));
+  ShowMessage('Quantidade de dias encontrados: ' + IntToStr(wQuantidade)
+              + #10 + #10 + 'Dias:' + #10 + wRetorno);
 
 end;
 
@@ -428,7 +418,7 @@ var
 begin
 
   // Instanciando variáveis
-  wDataInformada:= EncodeDateTime(2022, 05, 27, 0, 0, 0, 0);
+  wDataInformada:= EncodeDateTime(2022, 05, 26, 0, 0, 0, 0);
 
   // Calcula entre a data atual e a informada pelo usuário
   wDias:= DaysBetween(Today, wDataInformada);
