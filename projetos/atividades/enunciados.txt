@@ -33,3 +33,16 @@ Atividades grupo 1
 15- Retorne a quantidade de letras de uma frase. Ex: "SCI Sistemas Contábeis é uma empresa de tecnologia." - 43 letras, quantidade de consoantes e quantidade de vogais.
 
 16- Referente ao exercício anterior, supondo que o sistema só aceite 50 letras em um campo. Se a frase tiver 50 letras apresente ao usuário que a frase chegou ao limite de caracteres, mas se a frase passar de 50 letras apresente que a frase não será aceita pois é superior a quantidade de caracteres permitidos.
+
+17- Faça um programa que leia um valor e forneça a quantidade de cédulas necessárias para formar um montante. Sempre tentando atribuir o menor número de cédulas. Considere que os valores das notas são 100, 50, 20, 10, 5, 2 e 1. Considere que a entrada será somente de números inteiros. Importante: Declare os valores das cédulas num array e o utilize na rotina.
+Ex: 500 reais
+
+5 notas de cem (500)
+1 nota de cinquenta (550)
+1 nota de vinte (570)
+1 nota de dez (580)
+1 nota de cinco (585)
+1 nota de dois (587)
+1 nota de um (588)
+
+18- Escreva um programa que recebe um número e o escreva por extenso. Vale de 0 a 999.
