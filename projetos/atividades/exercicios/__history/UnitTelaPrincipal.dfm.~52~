@@ -150,4 +150,22 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 14
     OnClick = btnNmr14Click
   end
+  object btnNmr15: TButton
+    Left = 144
+    Top = 179
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 15'
+    TabOrder = 15
+    OnClick = btnNmr15Click
+  end
+  object btnNmr16: TButton
+    Left = 144
+    Top = 210
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 16'
+    TabOrder = 16
+    OnClick = btnNmr16Click
+  end
 end

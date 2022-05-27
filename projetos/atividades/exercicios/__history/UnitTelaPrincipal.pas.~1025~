@@ -25,6 +25,8 @@ type
     btnNmr14: TButton;
     btnNmr15: TButton;
     btnNmr16: TButton;
+    btnNmr17: TButton;
+    btnNmr18: TButton;
     procedure btnNmr1Click(Sender: TObject);
     procedure btnNmr2Click(Sender: TObject);
     procedure btnNmr3Click(Sender: TObject);
@@ -42,6 +44,8 @@ type
     procedure btnNmr14Click(Sender: TObject);
     procedure btnNmr15Click(Sender: TObject);
     procedure btnNmr16Click(Sender: TObject);
+    procedure btnNmr17Click(Sender: TObject);
+    procedure btnNmr18Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,7 +67,7 @@ var
 begin
 
   // Instanciando variáveis
-  wDataInformada:= EncodeDate(2022, 05, 30);
+  wDataInformada:= EncodeDate(2030, 06, 15);
   wDiasNaSemana[1]:= 'Domingo';
   wDiasNaSemana[2]:= 'Segunda-Feira';
   wDiasNaSemana[3]:= 'Terça-Feira';
@@ -273,8 +277,9 @@ var
   wTexto, wTextoMaiuscula: String;
   wQtdLetras: Integer;
   wI: Integer;
-  wVogais : String;
+  wVogais: String;
   wConsoantes: String;
+  wSaida: String;
 begin
 
   // Instanciando variáveis
@@ -283,7 +288,7 @@ begin
   wVogais:= 'AEIOUÁÉÍÓÚ';
   wConsoantes:= 'BCDFGHJKLMNPQRSTVWXYZ';
 
-  // Coleta a quantidade de vogais e consoantes
+  // Coleta a quantidade de letras
   for wI := 1 to Length(wTextoMaiuscula) do
      begin
        if (Pos(wTextoMaiuscula[wI], wVogais) > 0) or (Pos(wTextoMaiuscula[wI], wConsoantes) > 0) then
@@ -295,19 +300,194 @@ begin
   // Retorna os dados para o usuário
   if wQtdLetras = 50 then
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10
-                   + IntToStr(wQtdLetras) + #10 + 'A frase chegou ao limite de letras');
+       wSaida:= 'A frase chegou ao limite de letras';
      end
   else if wQtdLetras > 50 then
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10
-                   + IntToStr(wQtdLetras) + #10 + 'A frase não será aceita pois superou o limite de caracteres.');
+       wSaida:= 'A frase não será aceita pois superou o limite de caracteres.';
      end
   else
      begin
-       ShowMessage('Texto informado: ' + wTexto + #10
-                   + IntToStr(wQtdLetras) + #10 + 'Texto aprovado');
+       wSaida:= 'Texto aprovado';
      end;
+  ShowMessage('Texto informado: ' + wTexto + #10 + IntToStr(wQtdLetras) + #10 + wSaida);
+
+end;
+
+procedure TFormPrincipal.btnNmr17Click(Sender: TObject);
+var
+  wListaCedulas: array [0..6] of Integer;
+  wListaSaidaCedulas: array [0..6] of Integer;
+  wValor, wValorSaida, wI: Integer;
+  wTextoSaida: String;
+begin
+
+  // Instanciando variáveis
+  wListaCedulas[0]:= 1;
+  wListaCedulas[1]:= 2;
+  wListaCedulas[2]:= 5;
+  wListaCedulas[3]:= 10;
+  wListaCedulas[4]:= 20;
+  wListaCedulas[5]:= 50;
+  wListaCedulas[6]:= 100;
+  wValor:= 993;
+  wValorSaida:= wValor;
+
+  // Calcula a quantidade de cédulas
+  for wI := 6 downto 0 do
+     begin
+       wListaSaidaCedulas[wI]:= trunc(wValor / wListaCedulas[wI]);
+       wValor:= wValor - wListaSaidaCedulas[wI] * wListaCedulas[wI];
+       wTextoSaida:= wTextoSaida + IntToStr(wListaSaidaCedulas[wI]) + ' notas de ' + IntToStr(wListaCedulas[wI]) + #10;
+     end;
+
+  // Retorna os valores para o usuário
+  ShowMessage('Valor informado: ' + IntToStr(wValorSaida) + #10 + #10 + wTextoSaida);
+
+end;
+
+procedure TFormPrincipal.btnNmr18Click(Sender: TObject);
+var
+  w101a900: array [0..8] of String;
+  w20a90: array [0..7] of String;
+  w10a19: array [0..9] of String;
+  w0a9: array [0..9] of String;
+  wEntrada: String;
+  wSaida: String;
+  wNumeroTemp, wI, wI2: Integer;
+begin
+
+  // Instanciando variáveis
+  w0a9[1]:= 'um';
+  w0a9[2]:= 'dois';
+  w0a9[3]:= 'três';
+  w0a9[4]:= 'quatro';
+  w0a9[5]:= 'cinco';
+  w0a9[6]:= 'seis';
+  w0a9[7]:= 'sete';
+  w0a9[8]:= 'oito';
+  w0a9[9]:= 'nove';
+  w10a19[0]:= 'dez';
+  w10a19[1]:= 'onze';
+  w10a19[2]:= 'doze';
+  w10a19[3]:= 'treze';
+  w10a19[4]:= 'quatorze';
+  w10a19[5]:= 'quinze';
+  w10a19[6]:= 'dezesseis';
+  w10a19[7]:= 'dezesete';
+  w10a19[8]:= 'dezoito';
+  w10a19[9]:= 'dezenove';
+  w20a90[0]:= 'vinte';
+  w20a90[1]:= 'trinta';
+  w20a90[2]:= 'quarenta';
+  w20a90[3]:= 'cinquenta';
+  w20a90[4]:= 'sessenta';
+  w20a90[5]:= 'setenta';
+  w20a90[6]:= 'oitenta';
+  w20a90[7]:= 'noventa';
+  w101a900[0]:= 'cento';
+  w101a900[1]:= 'duzentos';
+  w101a900[2]:= 'trezentos';
+  w101a900[3]:= 'quatrocentos';
+  w101a900[4]:= 'quinhentos';
+  w101a900[5]:= 'seiscentos';
+  w101a900[6]:= 'setecentos';
+  w101a900[7]:= 'oitocentos';
+  w101a900[8]:= 'novecentos';
+  wEntrada:= '1';
+
+  if Length(wEntrada) = 3 then
+     begin
+       for wI := 1 to Length(wEntrada) do
+           begin
+             wNumeroTemp:= StrToInt(wEntrada[wI]);
+             if (wI = 1) then
+                begin
+                  wSaida:= wSaida + w101a900[wNumeroTemp - 1] + ' ';
+                end
+             else if (wI = 2) then
+                begin
+                  if wNumeroTemp = 1 then
+                     begin
+                       for wI2 := 0 to 9 do
+                          begin
+                            if StrToInt(wEntrada[wI + 1]) = wI2 then
+                               begin
+                                 wSaida:= wSaida + ' e ' + w10a19[wI2];
+                               end;
+                          end;
+                     end
+                  else
+                     begin
+                       if wNumeroTemp <> 0 then
+                          begin
+                            wSaida:= wSaida + ' e ' + w20a90[wNumeroTemp - 2];
+                          end
+                     end;
+                end
+             else if (wI = 3) and (StrToInt(wEntrada[wI - 1]) <> 1) then
+                begin
+                  if wNumeroTemp <> 0 then
+                     begin
+                       wSaida:= wSaida + ' e ' + w0a9[wNumeroTemp];
+                     end;
+                end;
+           end;
+     end
+  else if Length(wEntrada) = 2 then
+     begin
+       for wI := 1 to Length(wEntrada) do
+           begin
+             wNumeroTemp:= StrToInt(wEntrada[wI]);
+             if (wI = 1) then
+                begin
+                  if wNumeroTemp = 1 then
+                     begin
+                       for wI2 := 0 to 9 do
+                          begin
+                            if StrToInt(wEntrada[wI + 1]) = wI2 then
+                               begin
+                                 wSaida:= wSaida + w10a19[wI2];
+                               end;
+                          end;
+                     end
+                  else
+                     begin
+                       if wNumeroTemp = 0 then
+                          begin
+                            wSaida:= wSaida + w20a90[wNumeroTemp];
+                          end
+                       else
+                          begin
+                            wSaida:= wSaida + w20a90[wNumeroTemp - 2];
+                          end;
+                     end;
+                end
+             else if (wI = 2) and (StrToInt(wEntrada[wI - 1]) <> 1) then
+                begin
+                  if wNumeroTemp <> 0 then
+                     begin
+                       wSaida:= wSaida + ' e ' + w0a9[wNumeroTemp];
+                     end;
+                end;
+           end;
+     end
+  else if Length(wEntrada) = 1 then
+     begin
+       wNumeroTemp:= StrToInt(wEntrada);
+       wSaida:= w0a9[wNumeroTemp];
+     end;
+
+  if wEntrada = '100' then
+     begin
+       wSaida:= 'Cem';
+     end
+  else if wEntrada = '0' then
+     begin
+       wSaida:= 'Zero';
+     end;
+
+  ShowMessage('Número informado: ' + wEntrada + #10 + 'Número escrito: ' + wSaida);
 
 end;
 

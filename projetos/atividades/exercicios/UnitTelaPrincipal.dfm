@@ -168,4 +168,29 @@ object FormPrincipal: TFormPrincipal
     TabOrder = 16
     OnClick = btnNmr16Click
   end
+  object btnNmr17: TButton
+    Left = 144
+    Top = 241
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 17'
+    TabOrder = 17
+    OnClick = btnNmr17Click
+  end
+  object btnNmr18: TButton
+    Left = 144
+    Top = 272
+    Width = 75
+    Height = 25
+    Caption = 'N'#250'mero 18'
+    TabOrder = 18
+    OnClick = btnNmr18Click
+  end
+  object Edit1: TEdit
+    Left = 144
+    Top = 303
+    Width = 75
+    Height = 21
+    TabOrder = 19
+  end
 end
