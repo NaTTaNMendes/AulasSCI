@@ -32,9 +32,16 @@ implementation
 {$R *.dfm}
 
 procedure TfrExercicio1.btAdicionarClick(Sender: TObject);
+var
+  wNumeroTemporario : Integer;
 begin
-  wStringList.Add(edNumero.Text);
-  pLimparTela;
+  try
+    wNumeroTemporario := StrToInt(edNumero.Text);
+    wStringList.Add(edNumero.Text);
+    pLimparTela;
+  except
+    ShowMessage('Informe um número válido')
+  end;
 end;
 
 procedure TfrExercicio1.btMostrarClick(Sender: TObject);
