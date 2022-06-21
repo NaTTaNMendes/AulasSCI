@@ -1,0 +1,71 @@
+unit uExercicio1v2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TfrExercicio1 = class(TForm)
+    lbNumero: TLabel;
+    edNumero: TEdit;
+    btAdicionar: TButton;
+    btMostrar: TButton;
+    procedure FormShow(Sender: TObject);
+    procedure btAdicionarClick(Sender: TObject);
+    procedure btMostrarClick(Sender: TObject);
+    procedure pLimparTela;
+  private
+    { Private declarations }
+    wStringList : TStringList;
+    wMaior : Integer;
+  public
+    { Public declarations }
+  end;
+
+var
+  frExercicio1: TfrExercicio1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrExercicio1.btAdicionarClick(Sender: TObject);
+begin
+  wStringList.Add(edNumero.Text);
+  pLimparTela;
+end;
+
+procedure TfrExercicio1.btMostrarClick(Sender: TObject);
+var
+  wPosicao : Integer;
+begin
+  wPosicao := 0;
+
+  for wPosicao := 0 to wStringList.Count-1 do
+    begin
+      if StrToInt(wStringList[wPosicao]) > wMaior then
+         begin
+           wMaior := StrToInt(wStringList[wPosicao]);
+         end;
+    end;
+
+  ShowMessage('Maior: ' + IntToStr(wMaior));
+  wMaior := 0;
+  pLimparTela;
+end;
+
+procedure TfrExercicio1.FormShow(Sender: TObject);
+begin
+  wStringList := StringList.Create;
+  wMaior := 0;
+end;
+
+procedure TfrExercicio1.pLimparTela;
+begin
+  edNumero.Clear;
+  edNumero.SetFocus;
+end;
+
+end.

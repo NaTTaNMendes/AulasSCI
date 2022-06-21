@@ -1,0 +1,4 @@
+Anotações:
+
+#10 - quebra a linha
+EncodeDate - converte data
