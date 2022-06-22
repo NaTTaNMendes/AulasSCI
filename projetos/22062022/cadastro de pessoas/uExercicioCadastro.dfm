@@ -3,7 +3,7 @@ object frCadastro: TfrCadastro
   Top = 0
   Caption = 'Cadastro'
   ClientHeight = 165
-  ClientWidth = 316
+  ClientWidth = 312
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +12,7 @@ object frCadastro: TfrCadastro
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13

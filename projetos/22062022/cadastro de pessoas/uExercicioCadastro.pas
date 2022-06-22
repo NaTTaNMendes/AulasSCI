@@ -16,9 +16,11 @@ type
     btAdicionar: TButton;
     procedure FormShow(Sender: TObject);
     procedure btAdicionarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     wStringList : TStringList;
+    function fDiretorio : String;
   public
     { Public declarations }
   end;
@@ -51,20 +53,39 @@ begin
        else
           wEstrangeiro := 'Não';
 
-       wStringList.Add('Nome: ' + edNome.Text + ' | ' + ' Gênero: ' + wGenero + ' | Estrangeiro: ' + wEstrangeiro + #13);
+       wStringList.Add('Nome: ' + edNome.Text + ' | ' + ' Gênero: ' + wGenero + ' | Estrangeiro: ' + wEstrangeiro);
 
        for wCount := 0 to wStringList.Count-1 do
          begin
-           wSaida := wSaida + wStringList[wCount];
+           wSaida := wSaida + #13 + wStringList[wCount];
          end;
        ShowMessage(wSaida);
-     end;
+     end
+  else
+     ShowMessage('Insira um nome válido');
+
+end;
+
+function TfrCadastro.fDiretorio: String;
+begin
+  Result := 'C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\22062022\cadastro de pessoas\saidas';
+end;
+
+procedure TfrCadastro.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if DirectoryExists(fDiretorio) then
+     wStringList.SaveToFile(fDiretorio + '\Cadastros.txt')
+  else
+     ForceDirectories(fDiretorio + '\Cadastros.txt');
 
 end;
 
 procedure TfrCadastro.FormShow(Sender: TObject);
 begin
   wStringList := TStringList.Create;
+  if FileExists(fDiretorio + '\Cadastros.txt') then
+     wStringList.LoadFromFile(fDiretorio + '\Cadastros.txt');
+
 end;
 
 end.
