@@ -17,6 +17,11 @@ type
     btMostrar: TButton;
     lbCodigo: TLabel;
     edCodigo: TEdit;
+    wCDSInterface: TClientDataSet;
+    wCDSInterfacebdCODIGO: TIntegerField;
+    wCDSInterfacebdNOME: TStringField;
+    wCDSInterfacebdIDADE: TIntegerField;
+    wCDSInterfacebdESTUDANTE: TBooleanField;
     procedure FormShow(Sender: TObject);
     procedure btAdicionarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -115,17 +120,22 @@ begin
   // Adiciona a chave primária e os itens que iremos pesquisar
   wCDS.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
   wCDS.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
+  wCDSInterface.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
+  wCDSInterface.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
 
   // Inicia banco de dados
   wCDS.CreateDataSet;
   wCDS.Open;
+  wCDSInterface.CreateDataSet;
+  wCDSInterface.Open;
 end;
 
 procedure TfrCadastro.pLimparTela;
 begin
   edNome.Clear;
   edIdade.Clear;
-  edNome.SetFocus;
+  edCodigo.Clear;
+  edCodigo.SetFocus;
 end;
 
 end.
