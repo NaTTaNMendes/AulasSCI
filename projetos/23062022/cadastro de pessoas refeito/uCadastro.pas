@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, Datasnap.DBClient;
 
 type
   TfrCadastro = class(TForm)
@@ -15,6 +15,8 @@ type
     ckEstudante: TCheckBox;
     btAdicionar: TButton;
     btMostrar: TButton;
+    lbCodigo: TLabel;
+    edCodigo: TEdit;
     procedure FormShow(Sender: TObject);
     procedure btAdicionarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -22,6 +24,7 @@ type
   private
     { Private declarations }
     wCadastrados : TStringList;
+    wCDS : TClientDataSet;
     function fDiretorio : String;
     procedure pLimparTela;
   public
@@ -38,20 +41,21 @@ implementation
 procedure TfrCadastro.btAdicionarClick(Sender: TObject);
 var
   wNome, wEstudante : String;
-  wIdade : Integer;
+  wIdade, wCodigo : Integer;
 begin
   wNome := edNome.Text;
   if (wNome <> '') then
      begin
        try
          wIdade := StrToInt(edIdade.Text);
+         wCodigo := StrToInt(edCodigo.Text);
          if (ckEstudante.Checked = True) then
             wEstudante := 'Sim'
          else
             wEstudante := 'Não';
-         wCadastrados.Add('Nome: ' + wNome + ' | Idade: ' + IntToStr(wIdade) + ' | Estudante: ' + wEstudante);
+         wCadastrados.Add('Código: ' + IntToStr(wCodigo) + ' | Nome: ' + wNome + ' | Idade: ' + IntToStr(wIdade) + ' | Estudante: ' + wEstudante);
        except
-         ShowMessage('Idade inválida');
+         ShowMessage('Idade ou código inválidos');
        end;
        pLimparTela;
      end
@@ -75,11 +79,13 @@ begin
      end;
 end;
 
+// Coleta o caminho para salvar os arquivos
 function TfrCadastro.fDiretorio: String;
 begin
   Result := 'C:\Users\prog28\Desktop\Dados';
 end;
 
+// Salva os dados em um arquivo
 procedure TfrCadastro.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if DirectoryExists(fDiretorio) then
@@ -90,9 +96,29 @@ end;
 
 procedure TfrCadastro.FormShow(Sender: TObject);
 begin
+  // Inicia a lista
   wCadastrados := TStringList.Create;
+
+  // Verifica se existe o arquivo para armazenamento
   if FileExists(fDiretorio + '\dados.txt') then
      wCadastrados.LoadFromFile(fDiretorio + '\dados.txt');
+
+  // Cria variável
+  wCDS := TClientDataSet.Create(Self);
+
+  // Adiciona as colunas
+  wCDS.FieldDefs.Add('bdCODIGO', ftInteger);
+  wCDS.FieldDefs.Add('bdNOME', ftString, 255);
+  wCDS.FieldDefs.Add('bdIDADE', ftInteger);
+  wCDS.FieldDefs.Add('bdESTUDANTE', ftBoolean);
+
+  // Adiciona a chave primária e os itens que iremos pesquisar
+  wCDS.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
+  wCDS.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
+
+  // Inicia banco de dados
+  wCDS.CreateDataSet;
+  wCDS.Open;
 end;
 
 procedure TfrCadastro.pLimparTela;
