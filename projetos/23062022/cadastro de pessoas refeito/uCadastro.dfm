@@ -2,8 +2,8 @@ object frCadastro: TfrCadastro
   Left = 0
   Top = 0
   Caption = 'Cadastro'
-  ClientHeight = 194
-  ClientWidth = 219
+  ClientHeight = 232
+  ClientWidth = 234
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -36,6 +36,13 @@ object frCadastro: TfrCadastro
     Height = 13
     Caption = 'C'#243'digo:'
   end
+  object lbGenero: TLabel
+    Left = 16
+    Top = 115
+    Width = 39
+    Height = 13
+    Caption = 'G'#234'nero:'
+  end
   object edNome: TEdit
     Left = 72
     Top = 53
@@ -53,29 +60,29 @@ object frCadastro: TfrCadastro
     TextHint = 'Insira a idade'
   end
   object ckEstudante: TCheckBox
-    Left = 24
-    Top = 107
+    Left = 25
+    Top = 139
     Width = 97
     Height = 17
     Caption = 'Estudante'
-    TabOrder = 3
+    TabOrder = 4
   end
   object btAdicionar: TButton
-    Left = 118
-    Top = 107
+    Left = 119
+    Top = 139
     Width = 75
     Height = 25
     Caption = 'Adicionar'
-    TabOrder = 4
+    TabOrder = 5
     OnClick = btAdicionarClick
   end
   object btMostrar: TButton
-    Left = 48
-    Top = 161
+    Left = 49
+    Top = 193
     Width = 121
     Height = 25
     Caption = 'Mostrar cadastrados'
-    TabOrder = 6
+    TabOrder = 7
     OnClick = btMostrarClick
   end
   object edCodigo: TEdit
@@ -85,13 +92,28 @@ object frCadastro: TfrCadastro
     Height = 21
     TabOrder = 0
     TextHint = 'Insira o c'#243'digo'
+    OnExit = edCodigoExit
   end
   object ckNome: TCheckBox
-    Left = 23
-    Top = 138
+    Left = 24
+    Top = 170
     Width = 115
     Height = 17
     Caption = 'Ordenar por nome'
-    TabOrder = 5
+    TabOrder = 6
+  end
+  object cbGenero: TComboBox
+    Left = 72
+    Top = 112
+    Width = 121
+    Height = 21
+    Style = csDropDownList
+    ItemIndex = 0
+    TabOrder = 3
+    Text = 'Masculino'
+    Items.Strings = (
+      'Masculino'
+      'Feminino'
+      'Outro')
   end
 end

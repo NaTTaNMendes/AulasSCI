@@ -18,9 +18,12 @@ type
     lbCodigo: TLabel;
     edCodigo: TEdit;
     ckNome: TCheckBox;
+    lbGenero: TLabel;
+    cbGenero: TComboBox;
     procedure FormShow(Sender: TObject);
     procedure btAdicionarClick(Sender: TObject);
     procedure btMostrarClick(Sender: TObject);
+    procedure edCodigoExit(Sender: TObject);
   private
     { Private declarations }
     cdsCDS : TClientDataSet;
@@ -39,7 +42,7 @@ implementation
 procedure TfrCadastro.btAdicionarClick(Sender: TObject);
 var
   wNome, wEstudante : String;
-  wIdade, wCodigo : Integer;
+  wIdade, wCodigo, wGenero : Integer;
 begin
   wNome := edNome.Text;
   if (wNome <> '') then
@@ -47,6 +50,7 @@ begin
        try
          wIdade := StrToInt(edIdade.Text);
          wCodigo := StrToInt(edCodigo.Text);
+         wGenero := cbGenero.ItemIndex;
          if (ckEstudante.Checked = True) then
             wEstudante := 'Sim'
          else
@@ -67,6 +71,7 @@ begin
          cdsCDS.FieldByName('bdCODIGO').AsInteger := wCodigo;
          cdsCDS.FieldByName('bdNOME').AsString := wNome;
          cdsCDS.FieldByName('bdIDADE').AsInteger := wIdade;
+         cdsCDS.FieldByName('bdGENERO').AsInteger := wGenero;
          if (wEStudante = 'Sim') then
             cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := True
          else
@@ -86,13 +91,8 @@ end;
 procedure TfrCadastro.btMostrarClick(Sender: TObject);
 var
   wCount : Integer;
-  wSaida, wEstudante : String;
+  wSaida, wEstudante, wGenero : String;
 begin
-  if (BoolToStr(cdsCDS.FieldByName('bdESTUDANTE').AsBoolean) = '-1') then
-     wEstudante := 'Não'
-  else
-     wEstudante := 'Sim';
-
   if(ckNome.Checked = True) then
      cdsCDS.IndexFieldNames := 'bdNOME'
   else
@@ -102,10 +102,22 @@ begin
   wSaida := '';
   while not cdsCDS.Eof do
     begin
+      if (BoolToStr(cdsCDS.FieldByName('bdESTUDANTE').AsBoolean) = '-1') then
+         wEstudante := 'Não'
+      else
+         wEstudante := 'Sim';
+
+      if (cdsCDS.FieldByName('bdGENERO').AsInteger = 0) then
+         wGenero := 'Masculino'
+      else if (cdsCDS.FieldByName('bdGENERO').AsInteger = 1) then
+         wGenero := 'Feminino'
+      else
+         wGenero := 'Outro';
       wSaida := wSaida + #13 +
       'Código: ' + IntToStr(cdsCDS.FieldByName('bdCODIGO').AsInteger) +
       ' | Nome: ' + cdsCDS.FieldByName('bdNOME').AsString +
       ' | Idade: ' + IntToStr(cdsCDS.FieldByName('bdIDADE').AsInteger) +
+      ' | Gênero: ' + wGenero +
       ' | Estudante: ' + wEstudante;
       cdsCDs.Next;
     end;
@@ -113,6 +125,27 @@ begin
      ShowMessage('Nenhuma pessoa cadastrada')
   else
      ShowMessage(wSaida);
+end;
+
+procedure TfrCadastro.edCodigoExit(Sender: TObject);
+begin
+  if (edCodigo.Text <> '') then
+     begin
+       try
+         cdsCDS.IndexFieldNames := 'bdCODIGO';
+         if (cdsCDS.FindKey([StrToInt(edCodigo.Text)])) then
+            begin
+              edNome.Text := cdsCDS.FieldByName('bdNOME').AsString;
+              edIdade.Text := IntToStr(cdsCDS.FieldByName('bdIDADE').AsInteger);
+              cbGenero.ItemIndex := cdsCDS.FieldByName('bdGENERO').AsInteger;
+              if (cdsCDS.FieldByName('bdESTUDANTE').AsBoolean = True) then
+                 ckEstudante.Checked := True
+              else
+                 ckEstudante.Checked := False;
+            end;
+       except
+       end;
+     end;
 end;
 
 procedure TfrCadastro.FormShow(Sender: TObject);
@@ -125,6 +158,7 @@ begin
   cdsCDS.FieldDefs.Add('bdNOME', ftString, 255);
   cdsCDS.FieldDefs.Add('bdIDADE', ftInteger);
   cdsCDS.FieldDefs.Add('bdESTUDANTE', ftBoolean);
+  cdsCDS.FieldDefs.Add('bdGENERO', ftInteger);
 
   // Adiciona a chave primária e os itens que iremos pesquisar
   cdsCDS.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
