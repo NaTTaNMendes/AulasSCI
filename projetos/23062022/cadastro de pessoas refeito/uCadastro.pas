@@ -17,11 +17,12 @@ type
     btMostrar: TButton;
     lbCodigo: TLabel;
     edCodigo: TEdit;
-    wCDSInterface: TClientDataSet;
-    wCDSInterfacebdCODIGO: TIntegerField;
-    wCDSInterfacebdNOME: TStringField;
-    wCDSInterfacebdIDADE: TIntegerField;
-    wCDSInterfacebdESTUDANTE: TBooleanField;
+    cdsCDSInterface: TClientDataSet;
+    cdsCDSInterfacebdCODIGO: TIntegerField;
+    cdsCDSInterfacebdNOME: TStringField;
+    cdsCDSInterfacebdIDADE: TIntegerField;
+    cdsCDSInterfacebdESTUDANTE: TBooleanField;
+    ckNome: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure btAdicionarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -29,7 +30,7 @@ type
   private
     { Private declarations }
     wCadastrados : TStringList;
-    wCDS : TClientDataSet;
+    cdsCDS : TClientDataSet;
     function fDiretorio : String;
     procedure pLimparTela;
   public
@@ -63,6 +64,24 @@ begin
          ShowMessage('Idade ou código inválidos');
        end;
        pLimparTela;
+
+       // Busca o nome da coluna que vamos procurar e verifica se é necessário uma edição ou inserção
+       cdsCDS.IndexFieldNames := 'bdCODIGO';
+       if (cdsCDS.FindKey([IntToStr(wCodigo)])) then
+          cdsCDS.Edit
+       else
+          cdsCDS.Insert;
+
+       cdsCDS.FieldByName('bdCODIGO').AsInteger := wCodigo;
+       cdsCDS.FieldByName('bdNOME').AsString := wNome;
+       cdsCDS.FieldByName('bdIDADE').AsInteger := wIdade;
+       if (wEStudante = 'Sim') then
+          cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := True
+       else
+          cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := False;
+
+       // Salva uma linha
+       cdsCDS.Post;
      end
   else
      ShowMessage('Nome inválido');
@@ -71,17 +90,39 @@ end;
 procedure TfrCadastro.btMostrarClick(Sender: TObject);
 var
   wCount : Integer;
-  wSaida : String;
+  wSaida, wEstudante : String;
 begin
-  if (wCadastrados.Count = 0) then
-     ShowMessage('Nenhum dado cadastrado')
+
+//  if (wCadastrados.Count = 0) then
+//     ShowMessage('Nenhum dado cadastrado')
+//  else
+//     begin
+//       wSaida := '';
+//       for wCount := 0 to wCadastrados.Count-1 do
+//        wSaida := wSaida + wCadastrados[wCount] + #13;
+//      ShowMessage(wSaida);
+//     end;
+
+  if (BoolToStr(cdsCDS.FieldByName('bdESTUDANTE').AsBoolean) = '-1') then
+     wEstudante := 'Não'
   else
-     begin
-       wSaida := '';
-       for wCount := 0 to wCadastrados.Count-1 do
-         wSaida := wSaida + wCadastrados[wCount] + #13;
-       ShowMessage(wSaida);
-     end;
+     wEstudante := 'Sim';
+
+  if(ckNome.Checked = True) then
+     cdsCDS.IndexFieldNames := 'bdNOME';
+
+  cdsCDS.First;
+  wSaida := '';
+  while not cdsCDS.Eof do
+    begin
+      wSaida := wSaida + #13 +
+      'Código: ' + IntToStr(cdsCDS.FieldByName('bdCODIGO').AsInteger) +
+      ' | Nome: ' + cdsCDS.FieldByName('bdNOME').AsString +
+      ' | Idade: ' + IntToStr(cdsCDS.FieldByName('bdIDADE').AsInteger) +
+      ' | Estudante: ' + wEstudante;
+      cdsCDs.Next;
+    end;
+  showMessage(wSaida);
 end;
 
 // Coleta o caminho para salvar os arquivos
@@ -109,25 +150,25 @@ begin
      wCadastrados.LoadFromFile(fDiretorio + '\dados.txt');
 
   // Cria variável
-  wCDS := TClientDataSet.Create(Self);
+  cdsCDS := TClientDataSet.Create(Self);
 
   // Adiciona as colunas
-  wCDS.FieldDefs.Add('bdCODIGO', ftInteger);
-  wCDS.FieldDefs.Add('bdNOME', ftString, 255);
-  wCDS.FieldDefs.Add('bdIDADE', ftInteger);
-  wCDS.FieldDefs.Add('bdESTUDANTE', ftBoolean);
+  cdsCDS.FieldDefs.Add('bdCODIGO', ftInteger);
+  cdsCDS.FieldDefs.Add('bdNOME', ftString, 255);
+  cdsCDS.FieldDefs.Add('bdIDADE', ftInteger);
+  cdsCDS.FieldDefs.Add('bdESTUDANTE', ftBoolean);
 
   // Adiciona a chave primária e os itens que iremos pesquisar
-  wCDS.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
-  wCDS.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
-  wCDSInterface.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
-  wCDSInterface.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
+  cdsCDS.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
+  cdsCDS.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
+  cdsCDSInterface.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
+  cdsCDSInterface.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
 
   // Inicia banco de dados
-  wCDS.CreateDataSet;
-  wCDS.Open;
-  wCDSInterface.CreateDataSet;
-  wCDSInterface.Open;
+  cdsCDS.CreateDataSet;
+  cdsCDS.Open;
+  cdsCDSInterface.CreateDataSet;
+  cdsCDSInterface.Open;
 end;
 
 procedure TfrCadastro.pLimparTela;
