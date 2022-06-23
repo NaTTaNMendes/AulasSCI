@@ -2,7 +2,7 @@ object frCadastro: TfrCadastro
   Left = 0
   Top = 0
   Caption = 'Cadastro'
-  ClientHeight = 193
+  ClientHeight = 194
   ClientWidth = 219
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -42,7 +42,7 @@ object frCadastro: TfrCadastro
     Top = 53
     Width = 121
     Height = 21
-    TabOrder = 0
+    TabOrder = 1
     TextHint = 'Insira o nome'
   end
   object edIdade: TEdit
@@ -50,7 +50,7 @@ object frCadastro: TfrCadastro
     Top = 80
     Width = 121
     Height = 21
-    TabOrder = 1
+    TabOrder = 2
     TextHint = 'Insira a idade'
   end
   object ckEstudante: TCheckBox
@@ -59,7 +59,7 @@ object frCadastro: TfrCadastro
     Width = 97
     Height = 17
     Caption = 'Estudante'
-    TabOrder = 2
+    TabOrder = 3
   end
   object btAdicionar: TButton
     Left = 118
@@ -67,16 +67,16 @@ object frCadastro: TfrCadastro
     Width = 75
     Height = 25
     Caption = 'Adicionar'
-    TabOrder = 3
+    TabOrder = 4
     OnClick = btAdicionarClick
   end
   object btMostrar: TButton
     Left = 48
-    Top = 138
+    Top = 161
     Width = 121
     Height = 25
     Caption = 'Mostrar cadastrados'
-    TabOrder = 4
+    TabOrder = 5
     OnClick = btMostrarClick
   end
   object edCodigo: TEdit
@@ -84,7 +84,32 @@ object frCadastro: TfrCadastro
     Top = 26
     Width = 121
     Height = 21
-    TabOrder = 5
+    TabOrder = 0
     TextHint = 'Insira o c'#243'digo'
+  end
+  object ckNome: TCheckBox
+    Left = 23
+    Top = 138
+    Width = 115
+    Height = 17
+    Caption = 'Ordenar por nome'
+    TabOrder = 6
+  end
+  object cdsCDSInterface: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 192
+    object cdsCDSInterfacebdCODIGO: TIntegerField
+      FieldName = 'bdCODIGO'
+    end
+    object cdsCDSInterfacebdNOME: TStringField
+      FieldName = 'bdNOME'
+    end
+    object cdsCDSInterfacebdIDADE: TIntegerField
+      FieldName = 'bdIDADE'
+    end
+    object cdsCDSInterfacebdESTUDANTE: TBooleanField
+      FieldName = 'bdESTUDANTE'
+    end
   end
 end

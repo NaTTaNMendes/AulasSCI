@@ -17,21 +17,13 @@ type
     btMostrar: TButton;
     lbCodigo: TLabel;
     edCodigo: TEdit;
-    cdsCDSInterface: TClientDataSet;
-    cdsCDSInterfacebdCODIGO: TIntegerField;
-    cdsCDSInterfacebdNOME: TStringField;
-    cdsCDSInterfacebdIDADE: TIntegerField;
-    cdsCDSInterfacebdESTUDANTE: TBooleanField;
     ckNome: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure btAdicionarClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btMostrarClick(Sender: TObject);
   private
     { Private declarations }
-    wCadastrados : TStringList;
     cdsCDS : TClientDataSet;
-    function fDiretorio : String;
     procedure pLimparTela;
   public
     { Public declarations }
@@ -59,7 +51,6 @@ begin
             wEstudante := 'Sim'
          else
             wEstudante := 'Não';
-         wCadastrados.Add('Código: ' + IntToStr(wCodigo) + ' | Nome: ' + wNome + ' | Idade: ' + IntToStr(wIdade) + ' | Estudante: ' + wEstudante);
          // Busca o nome da coluna que vamos procurar e verifica se é necessário uma edição ou inserção
          cdsCDS.IndexFieldNames := 'bdCODIGO';
          if (cdsCDS.FindKey([IntToStr(wCodigo)])) then
@@ -97,24 +88,15 @@ var
   wCount : Integer;
   wSaida, wEstudante : String;
 begin
-
-//  if (wCadastrados.Count = 0) then
-//     ShowMessage('Nenhum dado cadastrado')
-//  else
-//     begin
-//       wSaida := '';
-//       for wCount := 0 to wCadastrados.Count-1 do
-//        wSaida := wSaida + wCadastrados[wCount] + #13;
-//      ShowMessage(wSaida);
-//     end;
-
   if (BoolToStr(cdsCDS.FieldByName('bdESTUDANTE').AsBoolean) = '-1') then
      wEstudante := 'Não'
   else
      wEstudante := 'Sim';
 
   if(ckNome.Checked = True) then
-     cdsCDS.IndexFieldNames := 'bdNOME';
+     cdsCDS.IndexFieldNames := 'bdNOME'
+  else
+     cdsCDS.IndexFieldNames := 'bdCODIGO';
 
   cdsCDS.First;
   wSaida := '';
@@ -130,33 +112,11 @@ begin
   if (wSaida = '') then
      ShowMessage('Nenhuma pessoa cadastrada')
   else
-     showMessage(wSaida);
-end;
-
-// Coleta o caminho para salvar os arquivos
-function TfrCadastro.fDiretorio: String;
-begin
-  Result := 'C:\Users\prog28\Desktop\Dados';
-end;
-
-// Salva os dados em um arquivo
-procedure TfrCadastro.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  if DirectoryExists(fDiretorio) then
-     wCadastrados.SaveToFile(fDiretorio + '\dados.txt')
-  else
-     ForceDirectories(fDiretorio + '\dados.txt');
+     ShowMessage(wSaida);
 end;
 
 procedure TfrCadastro.FormShow(Sender: TObject);
 begin
-  // Inicia a lista
-  wCadastrados := TStringList.Create;
-
-  // Verifica se existe o arquivo para armazenamento
-  if FileExists(fDiretorio + '\dados.txt') then
-     wCadastrados.LoadFromFile(fDiretorio + '\dados.txt');
-
   // Cria variável
   cdsCDS := TClientDataSet.Create(Self);
 
@@ -169,14 +129,10 @@ begin
   // Adiciona a chave primária e os itens que iremos pesquisar
   cdsCDS.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
   cdsCDS.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
-  cdsCDSInterface.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary]);
-  cdsCDSInterface.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
 
   // Inicia banco de dados
   cdsCDS.CreateDataSet;
   cdsCDS.Open;
-  cdsCDSInterface.CreateDataSet;
-  cdsCDSInterface.Open;
 end;
 
 procedure TfrCadastro.pLimparTela;

@@ -60,28 +60,33 @@ begin
          else
             wEstudante := 'Não';
          wCadastrados.Add('Código: ' + IntToStr(wCodigo) + ' | Nome: ' + wNome + ' | Idade: ' + IntToStr(wIdade) + ' | Estudante: ' + wEstudante);
+         // Busca o nome da coluna que vamos procurar e verifica se é necessário uma edição ou inserção
+         cdsCDS.IndexFieldNames := 'bdCODIGO';
+         if (cdsCDS.FindKey([IntToStr(wCodigo)])) then
+            begin
+              cdsCDS.Edit;
+              ShowMessage('Pessoa editada');
+            end
+         else
+            begin
+              cdsCDS.Insert;
+              ShowMessage('Pessoa adicionada');
+            end;
+
+         cdsCDS.FieldByName('bdCODIGO').AsInteger := wCodigo;
+         cdsCDS.FieldByName('bdNOME').AsString := wNome;
+         cdsCDS.FieldByName('bdIDADE').AsInteger := wIdade;
+         if (wEStudante = 'Sim') then
+            cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := True
+         else
+            cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := False;
+
+         // Salva uma linha
+         cdsCDS.Post;
        except
          ShowMessage('Idade ou código inválidos');
        end;
        pLimparTela;
-
-       // Busca o nome da coluna que vamos procurar e verifica se é necessário uma edição ou inserção
-       cdsCDS.IndexFieldNames := 'bdCODIGO';
-       if (cdsCDS.FindKey([IntToStr(wCodigo)])) then
-          cdsCDS.Edit
-       else
-          cdsCDS.Insert;
-
-       cdsCDS.FieldByName('bdCODIGO').AsInteger := wCodigo;
-       cdsCDS.FieldByName('bdNOME').AsString := wNome;
-       cdsCDS.FieldByName('bdIDADE').AsInteger := wIdade;
-       if (wEStudante = 'Sim') then
-          cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := True
-       else
-          cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := False;
-
-       // Salva uma linha
-       cdsCDS.Post;
      end
   else
      ShowMessage('Nome inválido');
@@ -122,7 +127,10 @@ begin
       ' | Estudante: ' + wEstudante;
       cdsCDs.Next;
     end;
-  showMessage(wSaida);
+  if (wSaida = '') then
+     ShowMessage('Nenhuma pessoa cadastrada')
+  else
+     showMessage(wSaida);
 end;
 
 // Coleta o caminho para salvar os arquivos

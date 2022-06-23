@@ -12,7 +12,6 @@ object frCadastro: TfrCadastro
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
-  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -76,7 +75,7 @@ object frCadastro: TfrCadastro
     Width = 121
     Height = 25
     Caption = 'Mostrar cadastrados'
-    TabOrder = 5
+    TabOrder = 6
     OnClick = btMostrarClick
   end
   object edCodigo: TEdit
@@ -93,23 +92,6 @@ object frCadastro: TfrCadastro
     Width = 115
     Height = 17
     Caption = 'Ordenar por nome'
-    TabOrder = 6
-  end
-  object cdsCDSInterface: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    Left = 192
-    object cdsCDSInterfacebdCODIGO: TIntegerField
-      FieldName = 'bdCODIGO'
-    end
-    object cdsCDSInterfacebdNOME: TStringField
-      FieldName = 'bdNOME'
-    end
-    object cdsCDSInterfacebdIDADE: TIntegerField
-      FieldName = 'bdIDADE'
-    end
-    object cdsCDSInterfacebdESTUDANTE: TBooleanField
-      FieldName = 'bdESTUDANTE'
-    end
+    TabOrder = 5
   end
 end

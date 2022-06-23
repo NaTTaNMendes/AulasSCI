@@ -27,7 +27,6 @@ type
     procedure btAdicionarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btMostrarClick(Sender: TObject);
-    procedure ckNomeClick(Sender: TObject);
   private
     { Private declarations }
     wCadastrados : TStringList;
@@ -61,28 +60,33 @@ begin
          else
             wEstudante := 'Não';
          wCadastrados.Add('Código: ' + IntToStr(wCodigo) + ' | Nome: ' + wNome + ' | Idade: ' + IntToStr(wIdade) + ' | Estudante: ' + wEstudante);
+         // Busca o nome da coluna que vamos procurar e verifica se é necessário uma edição ou inserção
+         cdsCDS.IndexFieldNames := 'bdCODIGO';
+         if (cdsCDS.FindKey([IntToStr(wCodigo)])) then
+            begin
+              cdsCDS.Edit;
+              ShowMessage('Pessoa editada');
+            end
+         else
+            begin
+              cdsCDS.Insert;
+              ShowMessage('Pessoa adicionada');
+            end;
+
+         cdsCDS.FieldByName('bdCODIGO').AsInteger := wCodigo;
+         cdsCDS.FieldByName('bdNOME').AsString := wNome;
+         cdsCDS.FieldByName('bdIDADE').AsInteger := wIdade;
+         if (wEStudante = 'Sim') then
+            cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := True
+         else
+            cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := False;
+
+         // Salva uma linha
+         cdsCDS.Post;
        except
          ShowMessage('Idade ou código inválidos');
        end;
        pLimparTela;
-
-       // Busca o nome da coluna que vamos procurar e verifica se é necessário uma edição ou inserção
-       cdsCDS.IndexFieldNames := 'bdCODIGO';
-       if (cdsCDS.FindKey([IntToStr(wCodigo)])) then
-          cdsCDS.Edit
-       else
-          cdsCDS.Insert;
-
-       cdsCDS.FieldByName('bdCODIGO').AsInteger := wCodigo;
-       cdsCDS.FieldByName('bdNOME').AsString := wNome;
-       cdsCDS.FieldByName('bdIDADE').AsInteger := wIdade;
-       if (wEStudante = 'Sim') then
-          cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := True
-       else
-          cdsCDS.FieldByName('bdESTUDANTE').AsBoolean := False;
-
-       // Salva uma linha
-       cdsCDS.Post;
      end
   else
      ShowMessage('Nome inválido');
@@ -93,7 +97,6 @@ var
   wCount : Integer;
   wSaida, wEstudante : String;
 begin
-
 //  if (wCadastrados.Count = 0) then
 //     ShowMessage('Nenhum dado cadastrado')
 //  else
@@ -109,6 +112,9 @@ begin
   else
      wEstudante := 'Sim';
 
+  if(ckNome.Checked = True) then
+     cdsCDS.IndexFieldNames := 'bdNOME';
+
   cdsCDS.First;
   wSaida := '';
   while not cdsCDS.Eof do
@@ -120,7 +126,10 @@ begin
       ' | Estudante: ' + wEstudante;
       cdsCDs.Next;
     end;
-  showMessage(wSaida);
+  if (wSaida = '') then
+     ShowMessage('Nenhuma pessoa cadastrada')
+  else
+     ShowMessage(wSaida);
 end;
 
 // Coleta o caminho para salvar os arquivos
