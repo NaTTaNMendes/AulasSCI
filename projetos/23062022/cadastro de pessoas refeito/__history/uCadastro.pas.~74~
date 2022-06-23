@@ -27,7 +27,6 @@ type
     procedure btAdicionarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btMostrarClick(Sender: TObject);
-    procedure ckNomeClick(Sender: TObject);
   private
     { Private declarations }
     wCadastrados : TStringList;
@@ -109,6 +108,9 @@ begin
   else
      wEstudante := 'Sim';
 
+  if(ckNome.Checked = True) then
+     cdsCDS.IndexFieldNames := 'bdNOME';
+
   cdsCDS.First;
   wSaida := '';
   while not cdsCDS.Eof do
@@ -121,11 +123,6 @@ begin
       cdsCDs.Next;
     end;
   showMessage(wSaida);
-end;
-
-procedure TfrCadastro.ckNomeClick(Sender: TObject);
-begin
-
 end;
 
 // Coleta o caminho para salvar os arquivos

@@ -22,7 +22,7 @@ type
     cdsCDSInterfacebdNOME: TStringField;
     cdsCDSInterfacebdIDADE: TIntegerField;
     cdsCDSInterfacebdESTUDANTE: TBooleanField;
-    CheckBox1: TCheckBox;
+    ckNome: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure btAdicionarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -68,8 +68,15 @@ begin
        // Busca o nome da coluna que vamos procurar e verifica se é necessário uma edição ou inserção
        cdsCDS.IndexFieldNames := 'bdCODIGO';
        if (cdsCDS.FindKey([IntToStr(wCodigo)])) then
-          cdsCDS.Edit
+          begin
+            cdsCDS.Edit;
+            ShowMessage('Pessoa editada');
+          end
        else
+          begin
+            cdsCDS.Insert;
+            ShowMessage('Pessoa adicionada');
+          end;
           cdsCDS.Insert;
 
        cdsCDS.FieldByName('bdCODIGO').AsInteger := wCodigo;
@@ -107,6 +114,9 @@ begin
      wEstudante := 'Não'
   else
      wEstudante := 'Sim';
+
+  if(ckNome.Checked = True) then
+     cdsCDS.IndexFieldNames := 'bdNOME';
 
   cdsCDS.First;
   wSaida := '';
