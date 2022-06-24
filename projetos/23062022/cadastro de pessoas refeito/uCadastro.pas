@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, Datasnap.DBClient;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, Datasnap.DBClient,
+  Vcl.Grids, Vcl.DBGrids;
 
 type
   TfrCadastro = class(TForm)
@@ -20,10 +21,13 @@ type
     ckNome: TCheckBox;
     lbGenero: TLabel;
     cbGenero: TComboBox;
+    grDados: TDBGrid;
+    dsCadastro: TDataSource;
     procedure FormShow(Sender: TObject);
     procedure btAdicionarClick(Sender: TObject);
     procedure btMostrarClick(Sender: TObject);
     procedure edCodigoExit(Sender: TObject);
+    procedure ckNomeClick(Sender: TObject);
   private
     { Private declarations }
     cdsCDS : TClientDataSet;
@@ -90,7 +94,6 @@ end;
 
 procedure TfrCadastro.btMostrarClick(Sender: TObject);
 var
-  wCount : Integer;
   wSaida, wEstudante, wGenero : String;
 begin
   if(ckNome.Checked = True) then
@@ -127,6 +130,15 @@ begin
      ShowMessage(wSaida);
 end;
 
+procedure TfrCadastro.ckNomeClick(Sender: TObject);
+begin
+  if(ckNome.Checked = True) then
+     cdsCDS.IndexFieldNames := 'bdNOME'
+  else
+     cdsCDS.IndexFieldNames := 'bdCODIGO';
+end;
+
+// Verifica se o código já existe no CDS e traz as informações para o usuário
 procedure TfrCadastro.edCodigoExit(Sender: TObject);
 begin
   if (edCodigo.Text <> '') then
@@ -148,6 +160,7 @@ begin
      end;
 end;
 
+// Variáveis e CDS iniciado ao abrir a tela
 procedure TfrCadastro.FormShow(Sender: TObject);
 begin
   // Cria variável
@@ -167,6 +180,9 @@ begin
   // Inicia banco de dados
   cdsCDS.CreateDataSet;
   cdsCDS.Open;
+
+  // Conectando o data source ao data set
+  dsCadastro.DataSet := cdsCDS;
 end;
 
 procedure TfrCadastro.pLimparTela;

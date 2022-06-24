@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/06/23 13:02:50.000.160,=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/06/23 13:04:07.000.526,C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\23062022\cadastro de pessoas refeito\uCadastro.dfm</Transaction>
+    <Transaction>2022/06/23 13:04:07.000.526,C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\23062022\cadastro de pessoas refeito\uCadastro.pas</Transaction>
+    <Transaction>2022/06/23 13:04:11.000.233,C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\23062022\cadastro de pessoas refeito\Cadastro.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

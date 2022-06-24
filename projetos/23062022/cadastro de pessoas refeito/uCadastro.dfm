@@ -2,8 +2,8 @@ object frCadastro: TfrCadastro
   Left = 0
   Top = 0
   Caption = 'Cadastro'
-  ClientHeight = 232
-  ClientWidth = 234
+  ClientHeight = 237
+  ClientWidth = 546
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -101,6 +101,7 @@ object frCadastro: TfrCadastro
     Height = 17
     Caption = 'Ordenar por nome'
     TabOrder = 6
+    OnClick = ckNomeClick
   end
   object cbGenero: TComboBox
     Left = 72
@@ -115,5 +116,59 @@ object frCadastro: TfrCadastro
       'Masculino'
       'Feminino'
       'Outro')
+  end
+  object grDados: TDBGrid
+    Left = 200
+    Top = 13
+    Width = 338
+    Height = 216
+    DataSource = dsCadastro
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    TabOrder = 8
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'bdCODIGO'
+        Title.Caption = 'C'#243'digo'
+        Width = 39
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'bdNOME'
+        Title.Caption = 'Nome'
+        Width = 95
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'bdIDADE'
+        Title.Caption = 'Idade'
+        Width = 40
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'bdGENERO'
+        Title.Caption = 'G'#234'nero'
+        Width = 74
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'bdESTUDANTE'
+        Title.Caption = 'Estudante'
+        Width = 102
+        Visible = True
+      end>
+  end
+  object dsCadastro: TDataSource
+    Left = 184
+    Top = 184
   end
 end
