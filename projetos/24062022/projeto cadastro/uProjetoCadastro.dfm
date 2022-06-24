@@ -2,8 +2,8 @@ object frCadastro: TfrCadastro
   Left = 0
   Top = 0
   Caption = 'Cadastro'
-  ClientHeight = 419
-  ClientWidth = 545
+  ClientHeight = 367
+  ClientWidth = 514
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,8 +16,8 @@ object frCadastro: TfrCadastro
   PixelsPerInch = 96
   TextHeight = 13
   object lbCodigo: TLabel
-    Left = 16
-    Top = 32
+    Left = 30
+    Top = 16
     Width = 48
     Height = 18
     Caption = 'C'#243'digo:'
@@ -29,8 +29,8 @@ object frCadastro: TfrCadastro
     ParentFont = False
   end
   object lbCPF: TLabel
-    Left = 240
-    Top = 77
+    Left = 256
+    Top = 56
     Width = 30
     Height = 18
     Caption = 'CPF:'
@@ -43,7 +43,7 @@ object frCadastro: TfrCadastro
   end
   object lbNome: TLabel
     Left = 34
-    Top = 117
+    Top = 101
     Width = 44
     Height = 18
     Caption = 'Nome:'
@@ -55,8 +55,8 @@ object frCadastro: TfrCadastro
     ParentFont = False
   end
   object lbEndereco: TLabel
-    Left = 8
-    Top = 157
+    Left = 12
+    Top = 141
     Width = 70
     Height = 18
     Caption = 'Endere'#231'o:'
@@ -68,8 +68,8 @@ object frCadastro: TfrCadastro
     ParentFont = False
   end
   object edCodigo: TEdit
-    Left = 70
-    Top = 29
+    Left = 96
+    Top = 13
     Width = 121
     Height = 26
     Font.Charset = DEFAULT_CHARSET
@@ -83,8 +83,8 @@ object frCadastro: TfrCadastro
     OnExit = edCodigoExit
   end
   object cbPessoa: TComboBox
-    Left = 70
-    Top = 69
+    Left = 96
+    Top = 53
     Width = 145
     Height = 26
     Style = csDropDownList
@@ -103,9 +103,9 @@ object frCadastro: TfrCadastro
       'Pessoa jur'#237'dica')
   end
   object edCPF: TEdit
-    Left = 288
-    Top = 69
-    Width = 209
+    Left = 304
+    Top = 53
+    Width = 193
     Height = 26
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -118,7 +118,7 @@ object frCadastro: TfrCadastro
   end
   object edNome: TEdit
     Left = 96
-    Top = 114
+    Top = 98
     Width = 401
     Height = 26
     Font.Charset = DEFAULT_CHARSET
@@ -132,7 +132,7 @@ object frCadastro: TfrCadastro
   end
   object edEndereco: TEdit
     Left = 96
-    Top = 154
+    Top = 138
     Width = 401
     Height = 26
     Font.Charset = DEFAULT_CHARSET
@@ -145,9 +145,9 @@ object frCadastro: TfrCadastro
     TextHint = 'Insira o endere'#231'o'
   end
   object ckIsento: TCheckBox
-    Left = 70
-    Top = 194
-    Width = 97
+    Left = 20
+    Top = 57
+    Width = 70
     Height = 17
     Caption = 'Isento'
     Font.Charset = DEFAULT_CHARSET
@@ -160,7 +160,7 @@ object frCadastro: TfrCadastro
   end
   object btSalvar: TButton
     Left = 70
-    Top = 233
+    Top = 176
     Width = 75
     Height = 25
     Caption = 'Salvar'
@@ -175,7 +175,7 @@ object frCadastro: TfrCadastro
   end
   object btExcluir: TButton
     Left = 171
-    Top = 233
+    Top = 176
     Width = 75
     Height = 25
     Caption = 'Excluir'
@@ -190,7 +190,7 @@ object frCadastro: TfrCadastro
   end
   object btExportar: TButton
     Left = 276
-    Top = 233
+    Top = 176
     Width = 75
     Height = 25
     Caption = 'Exportar'
@@ -205,8 +205,8 @@ object frCadastro: TfrCadastro
   end
   object grDados: TDBGrid
     Left = 8
-    Top = 272
-    Width = 529
+    Top = 216
+    Width = 498
     Height = 139
     DataSource = dsDados
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -263,7 +263,7 @@ object frCadastro: TfrCadastro
   end
   object btLimpar: TButton
     Left = 380
-    Top = 233
+    Top = 176
     Width = 75
     Height = 25
     Caption = 'Limpar'
@@ -277,7 +277,6 @@ object frCadastro: TfrCadastro
     OnClick = btLimparClick
   end
   object dsDados: TDataSource
-    Left = 504
-    Top = 216
+    Left = 448
   end
 end

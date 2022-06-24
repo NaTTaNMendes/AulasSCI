@@ -174,7 +174,7 @@ object frCadastro: TfrCadastro
     OnClick = btSalvarClick
   end
   object btExcluir: TButton
-    Left = 227
+    Left = 171
     Top = 233
     Width = 75
     Height = 25
@@ -186,9 +186,10 @@ object frCadastro: TfrCadastro
     Font.Style = []
     ParentFont = False
     TabOrder = 7
+    OnClick = btExcluirClick
   end
   object btExportar: TButton
-    Left = 372
+    Left = 276
     Top = 233
     Width = 75
     Height = 25
@@ -200,6 +201,7 @@ object frCadastro: TfrCadastro
     Font.Style = []
     ParentFont = False
     TabOrder = 8
+    OnClick = btExportarClick
   end
   object grDados: TDBGrid
     Left = 8
@@ -208,12 +210,13 @@ object frCadastro: TfrCadastro
     Height = 139
     DataSource = dsDados
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-    TabOrder = 9
+    TabOrder = 10
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnTitleClick = grDadosTitleClick
     Columns = <
       item
         Expanded = False
@@ -232,7 +235,7 @@ object frCadastro: TfrCadastro
       item
         Expanded = False
         FieldName = 'bdCPF'
-        Title.Caption = 'CPF'
+        Title.Caption = 'CPF ou CNPJ'
         Width = 114
         Visible = True
       end
@@ -257,6 +260,21 @@ object frCadastro: TfrCadastro
         Width = 185
         Visible = True
       end>
+  end
+  object btLimpar: TButton
+    Left = 380
+    Top = 233
+    Width = 75
+    Height = 25
+    Caption = 'Limpar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 18
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 9
+    OnClick = btLimparClick
   end
   object dsDados: TDataSource
     Left = 504
