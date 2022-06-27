@@ -1,0 +1,78 @@
+/* CRIA A TABELA*/
+CREATE TABLE TTUSUARIO_TREINAMENTO (
+    BDCODUSUARIO INTEGER,
+    BDNOMEUSUARIO VARCHAR(255),
+    BDDATANASCIMENTO DATE
+}
+
+/* ADICIONA UMA COLUNA DE TESTE*/
+ALTER TABLE TTUSUARIO_TREINAMENTO ADD BDTESTE INTEGER;
+
+/* ADICIONA UMA COLUNA DE CODIGO DE UF*/
+ALTER table ttusuario_treinamento ADD BDCODIGOUF integer;
+
+/* ALTERA A COLUNA CODIGOUF PARA NOT NULL*/
+ALTER TABLE ttusuario_treinamento ALTER BDCODIGOUF SET NOT NULL;
+
+/* ALTERA PARA NOT NULL E CONECTA ELA COMO CHAVE ESTRANGEIRA A PARTIR DA TABELA TUF*/
+ALTER TABLE ttusuario_treinamento ADD constraint FK_TTUSUARIO_TREINAMENTO FOREIGN KEY (BDCODIGOUF) references TUF(BDCODUF) ON DELETE SET NULL;
+
+/* INSERE UM USUÁRIO NO BANCO*/
+INSERT INTO ttusuario_treinamento (BDCODUSUARIO, BDNOMEUSUARIO, BDDATANASCIMENTO, BDCODIGOUF) VALUES (6, 'Usuário do insert manual', '2022-06-27', 24);
+
+/* INSERE OU ATUALIZA UM USUÁRIO NO BANCO*/
+UPDATE OR INSERT INTO ttusuario_treinamento (BDCODUSUARIO, BDNOMEUSUARIO)
+                                                VALUES (6, 'Alterando usuário do insert manual')
+                                                MATCHING (BDCODUSUARIO);
+
+/* ATUALIZA UM DADO NO BANCO*/
+UPDATE ttusuario_treinamento tabela SET tabela.BDCODIGOUF = NULL
+                             WHERE tabela.bdcodusuario = 6;
+
+/* ATUALIZA UM DADO NO BANCO*/
+UPDATE ttusuario_treinamento tabela SET tabela.BDCODIGOUF = NULL, tabela.bdnomeusuario = 'Kappa, alterei o nome'
+                             WHERE tabela.bdcodusuario = 6;
+
+/* ENCONTRANDO DADOS EM UMA TABELA, upper ou lower para trazer em min ou maius*/
+SELECT BDCODUSUARIO, BDNOMEUSUARIO FROM TTUSUARIO_TREINAMENTO TABELA;
+
+/*SELECT COM WHERE*/
+SELECT BDCODUSUARIO, BDNOMEUSUARIO FROM TTUSUARIO_TREINAMENTO TABELA WHERE BDCODUSUARIO = 6;
+
+/* SELECT COM JOIN DE TABELA*/
+SELECT BDCODUSUARIO, BDNOMEUSUARIO, TUF.BDSIGLAUF FROM
+                                      TTUSUARIO_TREINAMENTO
+                                      INNER JOIN TUF ON (TTUSUARIO_TREINAMENTO.BDCODIGOUF = TUF.BDCODUF);
+
+
+
+
+ANOTAÇÕES
+/************************************************************************************************************************************************************************/
+
+TECNOLOGIAS UTILZADAS DA EMPRESA: FIREBIRD, PARADOX, IBEXPERT
+
+PESQUISAR MELHOR SOBRE A CRIAÇÃO DE PKS E FKS NO CÓDIGO
+
+execute procedure ***NOME PROCEDURE***(parametros da procedure)
+
+ENTENDER MELHOR O FUNCIONAMENTO DE PROCEDURES NO SQL
+
+antigamente utilizavamos views : comecam com vw
+
+
+tabelas sempre comecam com T
+
+Matching no campo de update or insert deve ser único
+
+BETWEEN COLETA INFORMAÇÕES ENTRE DUAS VARIAVEIS DO SQL
+
+AND VERIFICA SE É VERDADEIRO ANTES DE USAR UM SELECT
+
+Criamos indices nos campos para tentar melhorar a performance
+
+USAMOS O GROUP BY PARA JUNTAR INFORMACOES IGUAIS, EX: AGRUPAR POR NOME, DATA NASCIMENTO, CIDADE, ETC.
+
+ORDER BY ORDENA DE ACORDO COM AS COLUNAS QUE INFORMAMOS SEGUIDO DE UMA FORMA , EX ORDER BY BDNOME DESC
+
+ 
