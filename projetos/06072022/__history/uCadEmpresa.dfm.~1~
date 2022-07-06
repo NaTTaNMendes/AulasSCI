@@ -1,0 +1,5 @@
+inherited frCadastroEmpresa: TfrCadastroEmpresa
+  Caption = 'Cadastro empresa'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

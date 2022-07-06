@@ -1,0 +1,20 @@
+inherited frCadastroEmpresa: TfrCadastroEmpresa
+  Caption = 'Cadastro empresa'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited btCadastrar: TButton
+    Left = 136
+    Top = 188
+    ExplicitLeft = 136
+    ExplicitTop = 188
+  end
+  object btCadRestaurante: TButton
+    Left = 184
+    Top = 217
+    Width = 137
+    Height = 25
+    Caption = 'Cadastrar Restaurante'
+    TabOrder = 7
+    OnClick = btCadRestauranteClick
+  end
+end

@@ -1,0 +1,14 @@
+program AprendendoPOO;
+
+uses
+  Vcl.Forms,
+  poo in 'poo.pas' {frCadastro};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrCadastro, frCadastro);
+  Application.Run;
+end.

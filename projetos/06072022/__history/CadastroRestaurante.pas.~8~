@@ -1,0 +1,63 @@
+unit CadastroRestaurante;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, poo, Vcl.StdCtrls;
+
+type
+  TEmpresa = class
+    private
+      wCodigo : Integer;
+      wCNPJ : String;
+      wDono : String;
+      wNome : String;
+      wEndereco : String;
+      wReceitaDiaria : Currency;
+  end;
+
+type
+  TRestaurante = class(TEmpresa)
+    private
+      wQuantidadeFuncionario : Integer;
+      wPrincipalPrato : String;
+  end;
+
+type
+  TfrCadastroRestaurante = class(TfrCadastro)
+    lbQuantidadeFuncionario: TLabel;
+    edQuantidadeFuncionario: TEdit;
+    lbPrincipalPrato: TLabel;
+    edPrincipalPrato: TEdit;
+    procedure btCadastrarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    wVariavel : String;
+  end;
+
+var
+  frCadastroRestaurante: TfrCadastroRestaurante;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrCadastroRestaurante.btCadastrarClick(Sender: TObject);
+var
+  wRestauranteEntrada : TRestaurante;
+begin
+  inherited;
+  wRestauranteEntrada.wCodigo := StrToInt(edCodigo.Text);
+  wRestauranteEntrada.wNome := edNome.text;
+  wRestauranteEntrada.wCNPJ := edCNPJ.Text;
+  wRestauranteEntrada.wDono := edDono.text;
+  wRestauranteEntrada.wEndereco := edEndereco.text;
+  wRestauranteEntrada.wReceitaDiaria := StrToCurr(edReceita.Text);
+  wRestauranteEntrada.wQuantidadeFuncionario := StrToInt(edQuantidadeFuncionario.text);
+  wRestauranteEntrada.wPrincipalPrato := edPrincipalPrato.text;
+end;
+
+end.
