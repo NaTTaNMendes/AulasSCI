@@ -29,15 +29,15 @@ type
     procedure pLimparTela();
   public
     { Public declarations }
-    function fRetornarEmpresa(): TEmpresa;
     wRelatorio : TfrRelatorio;
+    function fRetornarEmpresa(): TEmpresa;
+
   end;
 
 var
   frCadastroEmpresa: TfrCadastroEmpresa;
 
 implementation
-
 {$R *.dfm}
 
 procedure TfrCadastroEmpresa.btCadastrarClick(Sender: TObject);
@@ -59,7 +59,6 @@ begin
        end
     else
        begin
-
        end;
   except
     ShowMessage('Dados incorretos');

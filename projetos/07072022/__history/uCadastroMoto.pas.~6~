@@ -1,0 +1,49 @@
+unit uCadastroMoto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadastro, Vcl.StdCtrls, uClasses;
+
+type
+  TfrCadastroMoto = class(TfrCadastro)
+    ckEmplacado: TCheckBox;
+    edEmplacado: TEdit;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    wMoto : TMoto;
+    procedure pLimparCampos();
+  end;
+
+var
+  frCadastroMoto: TfrCadastroMoto;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrCadastroMoto }
+
+procedure TfrCadastroMoto.FormShow(Sender: TObject);
+begin
+  inherited;
+  // Cria o objeto moto
+  wMoto := TMoto.Create;
+
+  // Desativa o ckEmplacado
+  ckEmplacado.Checked := False
+end;
+
+procedure TfrCadastroMoto.pLimparCampos;
+begin
+  edEmplacado.Text := '';
+  edModelo.Text := '';
+  edCor.Text := '';
+  edPeso.Text := '';
+end;
+
+end.

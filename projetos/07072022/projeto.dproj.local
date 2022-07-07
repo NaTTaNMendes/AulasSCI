@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/07/06 16:19:13.000.965,=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:01:48.778,=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:03:31.490,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\uSistemaVeiculos.pas=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:03:31.490,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\uSistemaVeiculos.dfm=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/07/07 14:03:41.095,=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:03:54.128,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\uClasses.pas=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:14:10.666,=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:17:36.679,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\uCadastro.pas=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:17:36.679,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\uCadastro.dfm=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/07/07 14:18:35.856,=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:24:09.662,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\uCadastroCarros.dfm=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/07/07 14:24:09.662,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\uCadastroCarros.pas=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:24:36.105,=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:25:20.940,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\uCadastroMoto.dfm=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/07/07 14:25:20.940,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\uCadastroMoto.pas=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/07 14:57:59.506,C:\Users\prog28\Desktop\atividades\AulasSCI\projetos\07072022\projeto.dproj=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,15 @@
+unit uClasses;
+
+interface
+
+type
+  TVeiculo = class
+  public
+    wModelo : String;
+    wCor : String;
+    wPeso : Integer;
+  end;
+
+implementation
+
+end.

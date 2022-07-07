@@ -1,0 +1,9 @@
+unit uClasses;
+
+interface
+type
+  TVeiculo : class
+
+implementation
+
+end.

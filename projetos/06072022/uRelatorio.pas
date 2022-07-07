@@ -8,6 +8,24 @@ uses
   Vcl.StdCtrls, Datasnap.DBClient, CadastroRestaurante, uCadEmpresa;
 
 type
+  TEmpresa = class
+    private
+      wCodigo : Integer;
+      wCNPJ : String;
+      wDono : String;
+      wNome : String;
+      wEndereco : String;
+      wReceitaDiaria : Currency;
+  end;
+
+type
+  TRestaurante = class(TEmpresa)
+    private
+      wQuantidadeFuncionario : Integer;
+      wPrincipalPrato : String;
+  end;
+
+type
   TfrRelatorio = class(TForm)
     lbEmpresasCadastradas: TLabel;
     grDados: TDBGrid;
@@ -20,7 +38,8 @@ type
   private
     { Private declarations }
     cdsDados : TClientDataSet;
-
+    wEmpresa : TEmpresa;
+    wRestaurante : TRestaurante;
   public
     { Public declarations }
   end;
@@ -29,7 +48,6 @@ var
   frRelatorio: TfrRelatorio;
 
 implementation
-
 {$R *.dfm}
 
 procedure TfrRelatorio.btCadEmpresaClick(Sender: TObject);
