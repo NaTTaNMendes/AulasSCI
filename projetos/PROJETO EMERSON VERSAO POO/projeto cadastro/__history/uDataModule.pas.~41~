@@ -1,0 +1,173 @@
+unit uDataModule;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Datasnap.DBClient, uPessoa;
+
+type
+  TdmModulo = class(TDataModule)
+    dsDados: TDataSource;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    cdsDados : TClientDataSet;
+    procedure pInserirPessoaFisica(prPessoa : TPessoaFisica);
+    procedure pInserirPessoajuridica(prPessoa : TPessoaJuridica);
+    function fDeletarPessoa(prCodigo : Integer) : Boolean;
+    function fRetornarPessoa(prCodigo : Integer) : TPessoaJuridica;
+    function fRetornarRelatorio() : TStringList;
+  end;
+
+var
+  dmModulo: TdmModulo;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TdmModulo.DataModuleCreate(Sender: TObject);
+begin
+  // Cria o CDS
+  cdsDados := TClientDataSet.Create(Self);
+
+  // Adiciona as colunas
+  cdsDados.FieldDefs.Add('bdCODIGO', ftInteger);
+  cdsDados.FieldDefs.Add('bdNOME', ftString, 255);
+  cdsDados.FieldDefs.Add('bdTIPO', ftInteger);
+  cdsDados.FieldDefs.Add('bdCPF', ftString, 30);
+  cdsDados.FieldDefs.Add('bdENDERECO', ftString, 255);
+  cdsDados.FieldDefs.Add('bdISENTO', ftBoolean);
+
+  // Adiciona os índices
+  cdsDados.IndexDefs.Add('iCODIGO', 'bdCODIGO', [ixPrimary,ixUnique]);
+  cdsDados.IndexDefs.Add('iNOME', 'bdNOME', [ixCaseInsensitive]);
+  cdsDados.IndexDefs.Add('iTIPO', 'bdTIPO', [ixCaseInsensitive]);
+  cdsDados.IndexDefs.Add('iCPF', 'bdCPF', [ixCaseInsensitive]);
+  cdsDados.IndexDefs.Add('iENDERECO', 'bdENDERECO', [ixCaseInsensitive]);
+  cdsDados.IndexDefs.Add('iISENTO', 'bdISENTO', [ixCaseInsensitive]);
+
+  // Ativa e abre o CDS
+  cdsDados.CreateDataSet;
+  cdsDados.Open;
+
+  // Conecta DS ao CDS
+  dsDados.DataSet := cdsDados;
+end;
+
+function TdmModulo.fDeletarPessoa(prCodigo: Integer): Boolean;
+begin
+  try
+    cdsDados.IndexFieldNames := 'bdCODIGO';
+    if (cdsDados.FindKey([prCodigo])) then
+       cdsDados.Delete;
+       Result := True;
+  except
+    Result := False;
+  end;
+end;
+
+function TdmModulo.fRetornarPessoa(prCodigo: Integer): TPessoaJuridica;
+var
+  wPessoa : TPessoaJuridica;
+begin
+  wPessoa := TPessoaJuridica.Create;
+  cdsDados.IndexFieldNames := 'bdCODIGO';
+  if (cdsDados.FindKey([prCodigo])) then
+     begin
+       wPessoa.wCNPJ := cdsDados.FieldByName('bdCPF').AsString;
+       wPessoa.wNome := cdsDados.FieldByName('bdNOME').AsString;
+       wPessoa.wEndereco := cdsDados.FieldByName('bdENDERECO').AsString;
+       wPessoa.wIsento := cdsDados.FieldByName('bdISENTO').AsBoolean;
+     end;
+  Result := wPessoa;
+end;
+
+function TdmModulo.fRetornarRelatorio: TStringList;
+var
+  wSaida, wTipo, wIsento : String;
+  wLista : TStringList;
+begin
+  wSaida := '';
+  wLista := TStringList.Create;
+
+  // Adiciona todos os dados do CDS em um arquivo e salva
+  cdsDados.IndexFieldNames := 'bdCODIGO';
+  cdsDados.First;
+
+  while not(cdsDados.Eof) do
+    begin
+      if (cdsDados.FieldByName('bdTIPO').AsInteger = 0) then
+         wTipo := 'Pessoa Física'
+      else
+         wTipo := 'Pessoa jurídica';
+
+      if (cdsDados.FieldByName('bdISENTO').AsBoolean) then
+         wIsento := 'Sim'
+      else
+         wIsento := 'Não';
+
+      wSaida := wSaida + #13 +
+      'Código: ' + IntToStr(cdsDados.FieldByName('bdCODIGO').AsInteger) + ' | ' +
+      'Nome: ' + cdsDados.FieldByName('bdNOME').AsString + ' | ' +
+      'CPF: ' + cdsDados.FieldByName('bdCPF').AsString + ' | ' +
+      'Tipo: ' + wTipo + ' | ' +
+      'Isento: ' + wIsento + ' | ' +
+      'Endereço: ' + cdsDados.FieldByName('bdENDERECO').AsString;
+
+      // Avança para a próxima linha
+      cdsDados.Next;
+    end;
+
+  // Adiciona os dados na lista e retorna
+  wLista.Add(wSaida);
+  Result := wLista;
+end;
+
+procedure TdmModulo.pInserirPessoaFisica(prPessoa: TPessoaFisica);
+begin
+  // Verifica se é uma inserção ou edição
+  cdsDados.IndexFieldNames := 'bdCODIGO';
+  if (cdsDados.FindKey([IntToStr(prPessoa.wCodigo)])) then
+     cdsDados.Edit
+  else
+     cdsDados.Insert;
+
+  // Coloca os dados no CDS
+  cdsDados.FieldByName('bdCODIGO').AsInteger := prPessoa.wCodigo;
+  cdsDados.FieldByName('bdTIPO').AsInteger := 0;
+  cdsDados.FieldByName('bdCPF').AsString := prPessoa.wCPF;
+  cdsDados.FieldByName('bdNOME').AsString := prPessoa.wNome;
+  cdsDados.FieldByName('bdENDERECO').AsString := prPessoa.wEndereco;
+  cdsDados.FieldByName('bdISENTO').AsBoolean := False;
+
+  // Salva os dados no CDS
+  cdsDados.Post;
+end;
+
+procedure TdmModulo.pInserirPessoajuridica(prPessoa: TPessoaJuridica);
+begin
+  // Verifica se é uma inserção ou edição
+  cdsDados.IndexFieldNames := 'bdCODIGO';
+  if (cdsDados.FindKey([IntToStr(prPessoa.wCodigo)])) then
+     cdsDados.Edit
+  else
+     cdsDados.Insert;
+
+  // Coloca os dados no CDS
+  cdsDados.FieldByName('bdCODIGO').AsInteger := prPessoa.wCodigo;
+  cdsDados.FieldByName('bdTIPO').AsInteger := 1;
+  cdsDados.FieldByName('bdCPF').AsString := prPessoa.wCNPJ;
+  cdsDados.FieldByName('bdNOME').AsString := prPessoa.wNome;
+  cdsDados.FieldByName('bdENDERECO').AsString := prPessoa.wEndereco;
+  cdsDados.FieldByName('bdISENTO').AsBoolean := prPessoa.wIsento;
+
+  // Salva os dados no CDS
+  cdsDados.Post;
+end;
+
+end.

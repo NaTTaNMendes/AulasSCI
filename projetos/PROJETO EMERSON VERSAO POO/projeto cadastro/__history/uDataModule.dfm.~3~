@@ -1,0 +1,6 @@
+object dmModulo: TdmModulo
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 423
+  Width = 597
+end

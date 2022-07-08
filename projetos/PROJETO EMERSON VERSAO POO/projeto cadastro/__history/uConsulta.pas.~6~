@@ -1,0 +1,38 @@
+unit uConsulta;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uConsultaPadrao, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls;
+
+type
+  TfrConsulta = class(TfrConsultaPadrao)
+    grDados: TDBGrid;
+    btTelaCadastro: TButton;
+    procedure btTelaCadastroClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frConsulta: TfrConsulta;
+
+implementation
+uses uCadastro;
+{$R *.dfm}
+
+procedure TfrConsulta.btTelaCadastroClick(Sender: TObject);
+var
+  wCadastro : TfrCadastro;
+begin
+  inherited;
+  wCadastro := TfrCadastro.Create(Self);
+  wCadastro.Show;
+  Close;
+end;
+
+end.
