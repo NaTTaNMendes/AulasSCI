@@ -1,0 +1,22 @@
+object DataModule2: TDataModule2
+  OldCreateOrder = False
+  Height = 259
+  Width = 584
+  object dspEmpresa: TDataSetProvider
+    Left = 36
+    Top = 16
+  end
+  object tbEmpresa: TClientDataSet
+    Aggregates = <>
+    MasterSource = dsFonte
+    PacketRecords = 0
+    Params = <>
+    ProviderName = 'dspEmpresa'
+    Left = 128
+    Top = 16
+  end
+  object dsFonte: TDataSource
+    Left = 224
+    Top = 16
+  end
+end

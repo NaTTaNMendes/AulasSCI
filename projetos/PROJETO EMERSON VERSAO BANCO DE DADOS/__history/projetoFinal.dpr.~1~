@@ -1,0 +1,14 @@
+program projetoFinal;
+
+uses
+  Vcl.Forms,
+  uPrincipal in 'uPrincipal.pas' {uMenuPrincipal};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TuMenuPrincipal, uMenuPrincipal);
+  Application.Run;
+end.

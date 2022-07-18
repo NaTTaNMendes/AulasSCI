@@ -154,7 +154,7 @@ var
   wConsulta : TfrConsulta;
 begin
   inherited;
-  wConsulta := TfrConsulta.Create(Self);
+   wConsulta := TfrConsulta.Create(Self);
   wConsulta.Show;
 end;
 

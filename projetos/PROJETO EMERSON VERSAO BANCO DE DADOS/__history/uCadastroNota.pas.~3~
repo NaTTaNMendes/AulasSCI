@@ -1,0 +1,41 @@
+unit uCadastroNota;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadastroPadrao, System.ImageList,
+  Vcl.ImgList, Vcl.StdCtrls;
+
+type
+  TuCadNota = class(TuCadPadrao)
+    lbCodigoNota: TLabel;
+    edCodigoNota: TEdit;
+    lbData: TLabel;
+    edCNPJ: TEdit;
+    lbNome: TLabel;
+    lbUF: TLabel;
+    lbTelefone: TLabel;
+    edNome: TEdit;
+    edTelefone: TEdit;
+    cbUF: TComboBox;
+    lbCliente: TLabel;
+    edCodCliente: TEdit;
+    edCodEmpresa: TEdit;
+    lbCodEmpresa: TLabel;
+    lbCodProd: TLabel;
+    edCodProd: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  uCadNota: TuCadNota;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/07/06 16:19:13.000.965,=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 13:42:56.497,=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 13:44:50.168,C:\Users\prog28\Desktop\projeto final nattan\uPrincipal.pas=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 13:44:50.168,C:\Users\prog28\Desktop\projeto final nattan\uPrincipal.dfm=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/07/18 13:45:11.200,C:\Users\prog28\Desktop\projeto final nattan\projetoFinal.dproj=C:\Users\prog28\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2022/07/18 13:48:21.346,=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:04:57.461,C:\Users\prog28\Desktop\projeto final nattan\uCadastroPadrao.pas=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:04:57.461,C:\Users\prog28\Desktop\projeto final nattan\uCadastroPadrao.dfm=C:\Users\prog28\Desktop\projeto final nattan\Unit1.dfm</Transaction>
+    <Transaction>2022/07/18 14:05:33.654,=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:22:36.031,C:\Users\prog28\Desktop\projeto final nattan\uCadastroEmpresa.pas=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:22:36.031,C:\Users\prog28\Desktop\projeto final nattan\uCadastroEmpresa.dfm=C:\Users\prog28\Desktop\projeto final nattan\Unit1.dfm</Transaction>
+    <Transaction>2022/07/18 14:29:56.025,=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:35:47.215,=C:\Users\prog28\Desktop\projeto final nattan\Unit2.pas</Transaction>
+    <Transaction>2022/07/18 14:38:39.639,C:\Users\prog28\Desktop\projeto final nattan\uDataModule.pas=C:\Users\prog28\Desktop\projeto final nattan\Unit2.pas</Transaction>
+    <Transaction>2022/07/18 14:38:39.639,C:\Users\prog28\Desktop\projeto final nattan\uDataModule.dfm=C:\Users\prog28\Desktop\projeto final nattan\Unit2.dfm</Transaction>
+    <Transaction>2022/07/18 14:45:46.736,C:\Users\prog28\Desktop\projeto final nattan\uDataModule.pas=</Transaction>
+    <Transaction>2022/07/18 14:46:32.057,C:\Users\prog28\Desktop\projeto final nattan\uUtil.pas=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:47:50.211,=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:49:22.626,=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:52:10.460,C:\Users\prog28\Desktop\projeto final nattan\uCadastroCliente.dfm=C:\Users\prog28\Desktop\projeto final nattan\Unit1.dfm</Transaction>
+    <Transaction>2022/07/18 14:52:10.460,C:\Users\prog28\Desktop\projeto final nattan\uCadastroCliente.pas=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:54:39.168,=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 14:58:05.471,C:\Users\prog28\Desktop\projeto final nattan\uCadastroProduto.dfm=C:\Users\prog28\Desktop\projeto final nattan\Unit1.dfm</Transaction>
+    <Transaction>2022/07/18 14:58:05.471,C:\Users\prog28\Desktop\projeto final nattan\uCadastroProduto.pas=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 15:03:00.063,=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 15:18:39.776,C:\Users\prog28\Desktop\projeto final nattan\uCadastroNota.pas=C:\Users\prog28\Desktop\projeto final nattan\Unit1.pas</Transaction>
+    <Transaction>2022/07/18 15:18:39.776,C:\Users\prog28\Desktop\projeto final nattan\uCadastroNota.dfm=C:\Users\prog28\Desktop\projeto final nattan\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
