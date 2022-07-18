@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uCadastroEmpresa, uCadastroCliente, uCadastroProduto,
-  uCadastroNota;
+  uCadastroNota, uSobre;
 
 type
   TuMenuPrincipal = class(TForm)
@@ -13,9 +13,6 @@ type
     mmCad: TMenuItem;
     mmCadEmpresa: TMenuItem;
     mmCadCliente: TMenuItem;
-    mmConsulta: TMenuItem;
-    mmConsEmpresa: TMenuItem;
-    mmConsCliente: TMenuItem;
     mmSobre: TMenuItem;
     mmCadProduto: TMenuItem;
     mmLancamento: TMenuItem;
@@ -24,6 +21,7 @@ type
     procedure mmCadClienteClick(Sender: TObject);
     procedure mmCadProdutoClick(Sender: TObject);
     procedure mmLancNotaClick(Sender: TObject);
+    procedure mmSobreClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,6 +65,14 @@ var
 begin
   wCadastroNota := TuCadNota.Create(Self);
   wCadastroNota.Show;
+end;
+
+procedure TuMenuPrincipal.mmSobreClick(Sender: TObject);
+var
+  wSobre : TfrSobre;
+begin
+  wSobre := TfrSobre.Create(Self);
+  wSobre.Show;
 end;
 
 end.

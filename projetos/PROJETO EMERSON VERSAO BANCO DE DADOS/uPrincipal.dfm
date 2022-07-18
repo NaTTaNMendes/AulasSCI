@@ -26,7 +26,7 @@ object uMenuPrincipal: TuMenuPrincipal
       end
     end
     object mmCad: TMenuItem
-      Caption = 'Cadastrar'
+      Caption = 'Cadastrar/Consultar'
       object mmCadEmpresa: TMenuItem
         Caption = 'Empresa'
         OnClick = mmCadEmpresaClick
@@ -40,17 +40,9 @@ object uMenuPrincipal: TuMenuPrincipal
         OnClick = mmCadProdutoClick
       end
     end
-    object mmConsulta: TMenuItem
-      Caption = 'Consultar'
-      object mmConsEmpresa: TMenuItem
-        Caption = 'Empresa'
-      end
-      object mmConsCliente: TMenuItem
-        Caption = 'Cliente'
-      end
-    end
     object mmSobre: TMenuItem
       Caption = 'Sobre'
+      OnClick = mmSobreClick
     end
   end
 end
